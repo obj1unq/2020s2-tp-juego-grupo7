@@ -1,8 +1,12 @@
 import wollok.game.*
 import pepita.*
+import niveles.*
 
 program game {
 	game.title("Juego Base")
+	game.height(13)
+	game.width(20)
 	game.addVisual(pepita)
+	nivel1.iniciarEscenario()
 	game.start()
 }
