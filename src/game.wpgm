@@ -1,8 +1,18 @@
 import wollok.game.*
-import pepita.*
+import niveles.*
+import caballero.*
+import objetos.*
 
 program game {
 	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.height(13)
+	game.width(20)
+	
+	nivel1.iniciarEscenario()
+	game.addVisual(monedaCobre)
+	game.addVisual(monedaOro)
+	game.addVisual(monedaPlata)
+	game.addVisualCharacter(caballero)	
+	
 	game.start()
 }

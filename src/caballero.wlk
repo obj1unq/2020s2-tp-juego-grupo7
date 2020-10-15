@@ -1,14 +1,14 @@
 import wollok.game.*
 
-object pepita {
+object caballero {
 
-	method position() {
-		return game.center()
-	}
+	var property position = game.at(0,0)
 
 	method image() {
 		return "pepita.png"
 	}
+	
+	
 
 }
 
