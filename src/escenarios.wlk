@@ -8,6 +8,10 @@ class BloqueDePared{
 		game.addVisual(self)
 	}
 	method puedeMoverse (){ return false }
+	
+	method colisiono(personaje) {
+		
+	}
 
 }
 

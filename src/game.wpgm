@@ -2,6 +2,8 @@ import wollok.game.*
 import niveles.*
 import caballero.*
 import objetos.*
+import trampas.*
+import config.*
 
 // LEo desde aca
 program game {
@@ -15,14 +17,18 @@ program game {
 	game.addVisual(monedaOro)
 	game.addVisual(monedaPlata)
 	game.addVisualCharacter(caballero)	
+	
+	game.onTick(6000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
+	
+	config.configurarColisiones()
 
-	game.start()
+	game.start() 
 }
 
+  
+ 
 
-
-
-
+ 
 
 
 // LEO hasta aca

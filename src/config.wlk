@@ -16,4 +16,9 @@ object config {
 	method configurarTeclas() {
 		keyboard.left().onPressDo({caballero.position(caballero.position().left(1)) })
 	}
+	
+	method configurarColisiones() {
+		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
+		})
+	}
 }
