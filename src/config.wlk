@@ -7,10 +7,11 @@ import enemigos.*
 object config {
 	
 	method configurarAnimaciones(){
+
 		game.onTick(100, "ANIMACION", { monedero.cambiarImagenMonedas()
 										caballero.cambiarImagen()
 		})
-		}
+	}
 		
 	method configurarTeclas() {
 		keyboard.a().onPressDo({ caballero.irASiEsPosible(caballero.position().left(1)) })
@@ -24,5 +25,11 @@ object config {
 		keyboard.e().onPressDo({ caballero.interactuarConObjetoDebajo() })
 			
 	}
-		
+
+	
+	method configurarColisiones() {
+		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
+		})
+	}
+
 }

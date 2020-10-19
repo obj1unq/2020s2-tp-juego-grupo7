@@ -10,10 +10,20 @@ object caballero {
 		return "knight_"+ indexImg + ".png"
 	}
 	
+
 	method cambiarImagen() {
-		indexImg = (indexImg+1) % 4
+		indexImg = (indexImg+1) % 4	
 	}
 	
+	method perder() {
+		game.say(self, "PERDI INSSSSTA")
+		self.finalizarJuego()
+	}
+	
+	method sacarVida() {
+		self.perder()
+	}
+
 	method irASiEsPosible(nuevaPosicion) {
 		if (!self.esMuroOPuertaCerrada(nuevaPosicion)) {
 			self.irA(nuevaPosicion)
@@ -36,5 +46,9 @@ object caballero {
 		return objetos.head().action()
 	}
 	
-}
 
+	method finalizarJuego() {
+		game.schedule(1000, { game.stop() })
+	}
+
+}

@@ -10,9 +10,9 @@ class Moneda {
 	var property tipo = "Gold"
 	var property position = game.at(10, 9)
 	var indexImg = 0
-	method action() {game.removeVisual(self)}	
+	method action() {}	
 	method image() = tipo + "_2" + indexImg + ".png" 
-	
+	method colisiono(personaje){ game.removeVisual(self) }
 	method cambiarImagen() {
 		indexImg = (indexImg+1) % 10
 	}
@@ -42,6 +42,7 @@ class Puerta {
 	var property position = game.at(1, 6)	
 	method image() = "puerta" + estado + ".png" 
 	method action() {}
+	method colisiono(personaje){  }
 	
 	method cambiarEstado() {
 		if (estado == "Cerrada") {estado = "Abierta"} else {estado = "Cerrada"}
@@ -54,7 +55,7 @@ class Palanca {
 	var property position	
 	method image() = "palanca_" + estado + ".png" 
 	method action() {self.cambiarEstadoPuertas()}
-	
+	method colisiono(personaje){  }
 	
 	method cambiarEstadoPuertas() {
 		aberturas.cambiarEstadoPuertas()

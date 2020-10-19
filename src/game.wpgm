@@ -2,6 +2,7 @@ import wollok.game.*
 import niveles.*
 import caballero.*
 import objetos.*
+import trampas.*
 import config.*
 
 // LEo desde aca
@@ -9,9 +10,10 @@ program game {
 	game.title("Juego Base")
 	game.height(13)
 	game.width(20)
-	game.printString()
+	game.ground("suelo.png")
 	config.configurarTeclas()
-		
+	
+	
 	nivel1.iniciarEscenario()
 	
 	game.addVisual(monedero.crearMoneda("Bronze", game.at(10, 9)))
@@ -23,16 +25,18 @@ program game {
 	game.addVisual(aberturas.crearPuerta("Abierta", game.at(13, 2)))
 	game.addVisual(new Palanca(position = game.at(0,12)))
 	game.addVisual(new Palanca(position = game.at(8,7)))
-	game.addVisual(caballero)	
-	game.ground("suelo.png")
-	
-	game.start()
+	game.onTick(6000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
+	game.addVisual(caballero)
+	config.configurarColisiones()
+
+	game.start() 
+
 }
 
+  
+ 
 
-
-
-
+ 
 
 
 // LEO hasta aca
