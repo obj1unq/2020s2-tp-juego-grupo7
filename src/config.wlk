@@ -7,10 +7,11 @@ import enemigos.*
 object config {
 	
 	method configurarAnimaciones(){
+		
 		game.onTick(100, "ANIMACION", { monedaCobre.cambiarImagen()
 										monedaOro.cambiarImagen()
-										monedaPlata.cambiarImagen()
-		})
+										monedaPlata.cambiarImagen()})
+		
 		}
 		
 	method configurarTeclas() {
