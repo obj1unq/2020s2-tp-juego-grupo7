@@ -2,8 +2,9 @@ import wollok.game.*
 
 class BloqueDePared{
 	var property position=new Position()
-	const image="muro.png"
-	method image()=image
+	var property tipo = "muro"
+	
+	method image()= tipo + ".png"
 	method agregarBloqueAlEscenario(){
 		game.addVisual(self)
 	}

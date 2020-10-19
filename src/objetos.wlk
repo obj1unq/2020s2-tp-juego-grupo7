@@ -5,40 +5,77 @@ import enemigos.*
 
 // MONEDAS
 
-object monedaCobre {
-	
-	var property position = game.at(2, 4)
+
+class Moneda {
+	var property tipo = "Gold"
+	var property position = game.at(10, 9)
 	var indexImg = 0
-		
-	method image() = "Bronze_2" + indexImg + ".png" 
+	method action() {game.removeVisual(self)}	
+	method image() = tipo + "_2" + indexImg + ".png" 
 	
 	method cambiarImagen() {
 		indexImg = (indexImg+1) % 10
 	}
+	
+	
 }
 
-object monedaOro {
+object monedero {
+	const monedas = #{}
 	
-	var property position = game.at(3, 4)
-	var indexImg = 0
-		
-	method image() = "Gold_2" + indexImg +".png" 
-	
-	method cambiarImagen() {
-		indexImg = (indexImg+1) % 10
+	method crearMoneda (_tipo, _position){
+		const monedaCreada = new Moneda(tipo = _tipo, position = _position)
+		monedas.add(monedaCreada)
+		return monedaCreada	
 	}
-}
-
-object monedaPlata {
 	
-	var property position = game.at(4, 4)
-	var indexImg = 0
-		
-	method image() = "Silver_2" + indexImg +".png" 
-	
-	method cambiarImagen() {
-		indexImg = (indexImg+1) % 10
+	method cambiarImagenMonedas() {
+		monedas.forEach({moneda => moneda.cambiarImagen()})
 	}
+	
 }
 
 // MONEDAS FIN
+
+class Puerta {
+	var property estado = "Cerrada"
+	var property position = game.at(1, 6)	
+	method image() = "puerta" + estado + ".png" 
+	method action() {}
+	
+	method cambiarEstado() {
+		if (estado == "Cerrada") {estado = "Abierta"} else {estado = "Cerrada"}
+	}
+
+}
+
+class Palanca {
+	var property estado = 0
+	var property position	
+	method image() = "palanca_" + estado + ".png" 
+	method action() {self.cambiarEstadoPuertas()}
+	
+	
+	method cambiarEstadoPuertas() {
+		aberturas.cambiarEstadoPuertas()
+		estado = (estado+1) % 2
+	}
+
+}
+
+object aberturas {
+	const puertas = []
+	
+	method crearPuerta (_estado, _position){
+		const puertaCreada = new Puerta(estado = _estado, position = _position)
+		puertas.add(puertaCreada)
+		return 	puertaCreada	
+	}
+	
+	method cambiarEstadoPuertas() {
+		puertas.forEach({puerta => puerta.cambiarEstado()})
+	}
+	
+}
+
+
