@@ -79,4 +79,16 @@ object aberturas {
 	
 }
 
+object llave{
+	var property position=game.at(11,7)
+	method image()="llaveprueba-2.png"
+	
+	method action(){
+		game.removeVisual(self)
+		caballero.gane()
+	}
+	method colisiono(personaje){}
+}
+
+
 

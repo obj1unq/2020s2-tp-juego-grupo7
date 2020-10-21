@@ -50,5 +50,9 @@ object caballero {
 	method finalizarJuego() {
 		game.schedule(1000, { game.stop() })
 	}
+	method gane(){
+		game.say(self, "GANE PERRO")
+		self.finalizarJuego()
+	}
 
 }
