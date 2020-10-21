@@ -23,6 +23,7 @@ object caballero {
 	method sacarVida() {
 		self.perder()
 	}
+	
 
 	method irASiEsPosible(nuevaPosicion) {
 		if (!self.esMuroOPuertaCerrada(nuevaPosicion)) {
