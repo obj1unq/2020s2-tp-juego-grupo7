@@ -2,6 +2,7 @@ import escenarios.*
 import wollok.game.*
 import config.*
 import enemigos.*
+import objetos.*
 
 object nivel1 {
 	
@@ -22,6 +23,8 @@ object nivel1 {
 	game.addVisual(babosa)
 	game.addVisual(babosa2)
 	game.addVisual(babosa3)
+	
+	game.addVisual(llave)
 	
 	game.onTick(100,"ANIMACION", {babosa.cambiarImagen()})
 	game.onTick(500, "enemigo", { babosa.mover()})
