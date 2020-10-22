@@ -28,9 +28,9 @@ object config {
 	}
 
 	
-	method configurarColisiones() {
-		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
-		})
-	}
+//	method configurarColisiones() {
+//		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
+//		})
+//	}
 
 }

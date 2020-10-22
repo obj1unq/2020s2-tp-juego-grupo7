@@ -35,6 +35,7 @@ class Enemigo{
 	}
 	
 	method colisiono(personaje){
+		personaje.position(position)
 		personaje.sacarVida() 
 	}
 	

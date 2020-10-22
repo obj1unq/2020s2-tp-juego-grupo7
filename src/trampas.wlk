@@ -8,6 +8,7 @@ class Trampa {
     method image() = "trap1.png"
     method action() {}
     method colisiono(personaje) {
+    	personaje.position(position)
     	personaje.perder()
     }
 }

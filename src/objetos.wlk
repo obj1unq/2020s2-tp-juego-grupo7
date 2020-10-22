@@ -5,14 +5,13 @@ import enemigos.*
 
 // MONEDAS
 
-
 class Moneda {
 	var property tipo = "Gold"
 	var property position = game.at(10, 9)
 	var indexImg = 0
 	method action() {}	
 	method image() = tipo + "_2" + indexImg + ".png" 
-	method colisiono(personaje){ game.removeVisual(self) }
+	method colisiono(personaje){ personaje.position(position); game.removeVisual(self) }
 	method cambiarImagen() {
 		indexImg = (indexImg+1) % 10
 	}
@@ -38,24 +37,34 @@ object monedero {
 // MONEDAS FIN
 
 class Puerta {
-	var property estado = "Cerrada"
+	var property estado = cerrada
 	var property position = game.at(1, 6)	
-	method image() = "puerta" + estado + ".png" 
+	method image() = estado.image() 
 	method action() {}
-	method colisiono(personaje){  }
-	
-	method cambiarEstado() {
-		if (estado == "Cerrada") {estado = "Abierta"} else {estado = "Cerrada"} // cambiar a booleano
-	}
-
+	method colisiono(personaje){ estado.colisiono(personaje, position) }
+	method cambiarEstado() { estado.cambiar(self) }
 }
+
+object cerrada {
+	method cambiar(puerta){	puerta.estado(abierta) }
+	method image() = "puertaCerrada.png"
+	method colisiono(personaje, position){  }
+}
+
+object abierta {
+	method cambiar(puerta){	puerta.estado(cerrada) }
+	method image() = "puertaAbierta.png"
+	method colisiono(personaje, position){ personaje.position(position) }
+}
+
+
 
 class Palanca {
 	var property estado = 0
 	var property position	
 	method image() = "palanca_" + estado + ".png" 
 	method action() {self.cambiarEstadoPuertas()}
-	method colisiono(personaje){  }
+	method colisiono(personaje){ personaje.position(position) }
 	
 	method cambiarEstadoPuertas() {
 		aberturas.cambiarEstadoPuertas()
@@ -87,7 +96,7 @@ object llave{
 		game.removeVisual(self)
 		caballero.gane()
 	}
-	method colisiono(personaje){}
+	method colisiono(personaje){ personaje.position(position) }
 }
 
 

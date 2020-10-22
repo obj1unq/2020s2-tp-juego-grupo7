@@ -31,10 +31,10 @@ object nivel1 {
 	game.addVisual(monedero.crearMoneda("Bronze", game.at(10, 9)))
 	game.addVisual(monedero.crearMoneda("Gold", game.at(4, 7)))
 	game.addVisual(monedero.crearMoneda("Silver", game.at(18, 2)))
-	game.addVisual(aberturas.crearPuerta("Cerrada", game.at(1, 6)))
-	game.addVisual(aberturas.crearPuerta("Abierta", game.at(16, 6)))
-	game.addVisual(aberturas.crearPuerta("Cerrada", game.at(7, 8)))
-	game.addVisual(aberturas.crearPuerta("Abierta", game.at(13, 2)))
+	game.addVisual(aberturas.crearPuerta(cerrada, game.at(1, 6)))
+	game.addVisual(aberturas.crearPuerta(abierta, game.at(16, 6)))
+	game.addVisual(aberturas.crearPuerta(cerrada, game.at(7, 8)))
+	game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
 	game.addVisual(new Palanca(position = game.at(0,12)))
 	game.addVisual(new Palanca(position = game.at(8,7)))
 	game.onTick(6000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
@@ -43,7 +43,7 @@ object nivel1 {
 	
 	game.addVisual(caballero)
 	
-	config.configurarColisiones()
+//	config.configurarColisiones()
 	config.configurarTeclas()
 	config.configurarAnimaciones()
 	

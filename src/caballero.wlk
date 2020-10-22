@@ -3,14 +3,12 @@ import wollok.game.*
 object caballero {
 	var indexImg = 0
 	var property position = game.at(0,0)
-	var lista =[]
-	
+	const monedas =[]
 	
 	method image() {
 		return "knight_"+ indexImg + ".png"
 	}
 	
-
 	method cambiarImagen() {
 		indexImg = (indexImg+1) % 4	
 	}
@@ -24,21 +22,22 @@ object caballero {
 		self.perder()
 	}
 	
-
 	method irASiEsPosible(nuevaPosicion) {
-		if (!self.esMuroOPuertaCerrada(nuevaPosicion)) {// Refactor y vaidar estar dentro del juego
-			self.irA(nuevaPosicion)
-		}
-	}	
-	method esMuroOPuertaCerrada(nuevaPosicion) {
-		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) // Refactor
-		return objetosNuevaPosicion.any({cosa => cosa.image() == "muro.png" or cosa.image() == "puertaCerrada.png"})
+		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) 
+		if (objetosNuevaPosicion.size()>0) 
+			objetosNuevaPosicion.head().colisiono(self) 
+			else self.irAConLimites(nuevaPosicion)
 	}
 	
-	method irA(nuevaPosicion) {
+	method irAConLimites(nuevaPosicion) {
+		if (self.estaDentroDelTablero(nuevaPosicion))
 		position = nuevaPosicion
 	}
 	
+	method estaDentroDelTablero(posicion){
+		return posicion.x().between(0,game.width()-1) and posicion.y().between(0,game.height()-1)
+	}	
+		
 	method interactuarConObjetoDebajo() {
 		const objetos = game.colliders(self)
 		if (objetos.isEmpty()) {
@@ -47,7 +46,6 @@ object caballero {
 		return objetos.head().action()
 	}
 	
-
 	method finalizarJuego() {
 		game.schedule(1000, { game.stop() })
 	}
@@ -55,5 +53,6 @@ object caballero {
 		game.say(self, "GANE PERRO")
 		self.finalizarJuego()
 	}
+
 
 }
