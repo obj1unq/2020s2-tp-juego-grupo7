@@ -76,7 +76,7 @@ object derecha{
 	}
 	
 	method nombre(){
-		return "Derecha"
+		return "derecha"
 	}
 	
 }
