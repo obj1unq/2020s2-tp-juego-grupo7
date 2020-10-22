@@ -1,22 +1,12 @@
 import wollok.game.*
 import niveles.*
-import caballero.*
-import objetos.*
 
-import config.*
 
 program game {
-	game.title("Juego Base")
-	game.height(14)
-	game.width(20)
-	game.ground("suelo.png")
-	config.configurarTeclas()
-		
+	game.title("Escape ATR")
+			
 	nivel1.iniciarEscenario()
 	
-	game.addVisual(caballero)
-	config.configurarColisiones()
-
 	game.start() 
 
 }

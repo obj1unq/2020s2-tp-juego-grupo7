@@ -4,10 +4,14 @@ import config.*
 import enemigos.*
 import objetos.*
 import trampas.*
+import caballero.*
 
 object nivel1 {
 	
-	method iniciarEscenario(){	
+	method iniciarEscenario(){
+	game.height(14)
+	game.width(20)
+	game.ground("suelo.png")	
 	const babosa = new Enemigo(position = game.at(10,4),direccion = izquierda,movimientosRealizados = 0,movimientosALlegar = 10)
 	const babosa2 = new Enemigo(position = game.at(12,5),direccion = derecha,movimientosRealizados = 0,movimientosALlegar= 7)
 	const babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosRealizados = 0,movimientosALlegar=6)
@@ -37,13 +41,19 @@ object nivel1 {
 	
 	game.addVisual(llave)
 	
+	game.addVisual(caballero)
+	
+	config.configurarColisiones()
+	config.configurarTeclas()
+	config.configurarAnimaciones()
+	
 	game.onTick(100,"ANIMACION", {babosa.cambiarImagen()})
 	game.onTick(500, "enemigo", { babosa.mover()})
 	game.onTick(100,"ANIMACION", {babosa2.cambiarImagen()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
 	game.onTick(100,"ANIMACION", {babosa3.cambiarImagen()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
-	config.configurarAnimaciones()
+	
 	}
 	
 	

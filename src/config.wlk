@@ -11,6 +11,7 @@ object config {
 		game.onTick(100, "ANIMACION", { monedero.cambiarImagenMonedas()
 										caballero.cambiarImagen()
 		})
+		
 	}
 		
 	method configurarTeclas() {
