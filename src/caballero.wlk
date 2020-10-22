@@ -1,6 +1,7 @@
 import wollok.game.*
 import enemigos.*
 
+
 object caballero {
 	var indexImg = 0
 	var property position = game.at(0,0)
@@ -24,11 +25,20 @@ object caballero {
 		self.perder()
 	}
 	
+	
+/* 	method perderVida(){
+		if (not vida == 0){
+			vida = vida - vida.max(0)
+		}else{
+			self.perder()
+		}
+	}
+*/	
 	method irASiEsPosible(nuevaPosicion) {
 		self.cambiarDireccion(nuevaPosicion)
 		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) 
 		if (objetosNuevaPosicion.size()>0){
-			objetosNuevaPosicion.head().colisiono(self) 
+			objetosNuevaPosicion.head().colisiono(self)
 		}
 		else{
 			self.irAConLimites(nuevaPosicion)
@@ -63,7 +73,7 @@ object caballero {
 	}
 	
 	method finalizarJuego() {
-		game.schedule(1000, { game.stop() })
+		game.schedule(2000, { game.stop() })
 	}
 	method gane(){
 		game.say(self, "GANE PERRO")

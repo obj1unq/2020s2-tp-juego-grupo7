@@ -12,7 +12,7 @@ class Enemigo{
 	var property position = game.at(0,0)
 	var indexImg = 0
 	var property direccion = null
-	var property movimientosRealizados = null
+	var property movimientosRealizados = 0
 	var property movimientosALlegar = null
 	
 	method image() {
