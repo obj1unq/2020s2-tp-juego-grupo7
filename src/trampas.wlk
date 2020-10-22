@@ -22,7 +22,6 @@ object fabricaDeTrampas {
 
 object generadorDeTrampas { 
 	
-
 	method nuevaTrampa() {
 		const trampita = fabricaDeTrampas.generarTrampa()
 			game.addVisual(trampita)

@@ -45,7 +45,7 @@ class Puerta {
 	method colisiono(personaje){  }
 	
 	method cambiarEstado() {
-		if (estado == "Cerrada") {estado = "Abierta"} else {estado = "Cerrada"}
+		if (estado == "Cerrada") {estado = "Abierta"} else {estado = "Cerrada"} // cambiar a booleano
 	}
 
 }

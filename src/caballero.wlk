@@ -26,12 +26,12 @@ object caballero {
 	
 
 	method irASiEsPosible(nuevaPosicion) {
-		if (!self.esMuroOPuertaCerrada(nuevaPosicion)) {
+		if (!self.esMuroOPuertaCerrada(nuevaPosicion)) {// Refactor y vaidar estar dentro del juego
 			self.irA(nuevaPosicion)
 		}
 	}	
 	method esMuroOPuertaCerrada(nuevaPosicion) {
-		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion)
+		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) // Refactor
 		return objetosNuevaPosicion.any({cosa => cosa.image() == "muro.png" or cosa.image() == "puertaCerrada.png"})
 	}
 	

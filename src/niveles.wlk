@@ -3,6 +3,7 @@ import wollok.game.*
 import config.*
 import enemigos.*
 import objetos.*
+import trampas.*
 
 object nivel1 {
 	
@@ -23,6 +24,16 @@ object nivel1 {
 	game.addVisual(babosa)
 	game.addVisual(babosa2)
 	game.addVisual(babosa3)
+	game.addVisual(monedero.crearMoneda("Bronze", game.at(10, 9)))
+	game.addVisual(monedero.crearMoneda("Gold", game.at(4, 7)))
+	game.addVisual(monedero.crearMoneda("Silver", game.at(18, 2)))
+	game.addVisual(aberturas.crearPuerta("Cerrada", game.at(1, 6)))
+	game.addVisual(aberturas.crearPuerta("Abierta", game.at(16, 6)))
+	game.addVisual(aberturas.crearPuerta("Cerrada", game.at(7, 8)))
+	game.addVisual(aberturas.crearPuerta("Abierta", game.at(13, 2)))
+	game.addVisual(new Palanca(position = game.at(0,12)))
+	game.addVisual(new Palanca(position = game.at(8,7)))
+	game.onTick(6000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	
 	game.addVisual(llave)
 	
@@ -34,5 +45,7 @@ object nivel1 {
 	game.onTick(700, "enemigo", { babosa3.mover()})
 	config.configurarAnimaciones()
 	}
+	
+	
 	
 }

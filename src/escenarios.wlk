@@ -27,29 +27,6 @@ object generadorDeHabitacion {  //podria ser un class?
 		self.armadoDeParedVertical(altoDePared,posicionInicial.right(largoDePared-1))
 	}
 	
-//	//TODO:codigo duplicado. 
-//	method armadoDeParedHorizontal(largoDePared,posicionInicial){
-//			var celdas=largoDePared 
-//			var pos=posicionInicial
-//			if (celdas>0){
-//			pared.add(new BloqueDePared(position=pos))
-//			pos=pos.right(1)
-//			celdas-=1
-//			self.armadoDeParedHorizontal(celdas,pos)}
-//			else{self.paredEnGame()}
-//			pared=[]
-//}
-//	method armadoDeParedVertical(largoDePared,posicionInicial){
-//			var celdas=largoDePared
-//			var pos=posicionInicial
-//			if (celdas>0){
-//			pared.add(new BloqueDePared(position=pos))
-//			pos=pos.up(1)
-//			celdas-=1
-//			self.armadoDeParedVertical(celdas,pos)}
-//			else{self.paredEnGame()}
-//			pared=[]
-//	}
 
   method paredEnGame(){pared.forEach({unbloque=>unbloque.agregarBloqueAlEscenario()})}
   //TODO:validaciones
