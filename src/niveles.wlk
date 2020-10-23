@@ -48,7 +48,7 @@ object nivel1 {
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
 	game.addVisual(new Palanca(position = game.at(0,12)))
 	game.addVisual(new Palanca(position = game.at(8,7)))
-	game.onTick(6000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
+	game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	
 	game.addVisual(llave)
 	

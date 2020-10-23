@@ -7,6 +7,7 @@ object caballero {
 	var property position = game.at(0,0)
 	var property direccion = derecha
 	const monedas =[]
+	var property nivelDeVida = 3
 	
 	method image() {
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
@@ -22,7 +23,10 @@ object caballero {
 	}
 	
 	method sacarVida() {
-		self.perder()
+		if (nivelDeVida > 1) { 
+			nivelDeVida -= 1;
+			game.say(self, "Te queda " + nivelDeVida + " vida") }
+			else {self.perder()}
 	}
 	
 	

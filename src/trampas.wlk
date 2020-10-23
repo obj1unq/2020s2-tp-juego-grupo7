@@ -13,7 +13,7 @@ class Trampa {
     
     method colisiono(personaje) {
     	personaje.position(position)
-    	personaje.perder()
+    	personaje.sacarVida()
     }
     
     method cambiarImagen(){
