@@ -77,6 +77,8 @@ object aberturas {
 	const puertas = []
 	
 	method crearPuerta (_estado, _position){
+		const bloque=game.getObjectsIn(_position).get(0)
+ 			  game.removeVisual(bloque)
 		const puertaCreada = new Puerta(estado = _estado, position = _position)
 		puertas.add(puertaCreada)
 		return 	puertaCreada	

@@ -14,28 +14,45 @@ class Trampa {
     method colisiono(personaje) {
     	personaje.position(position)
     	personaje.sacarVida()
+    	
+    	
     }
+    method animacion(){
+  	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
+    	
+ //  method detenerAnimacion(){
+ //   	game.removeTickEvent("ANIMACION")
+ //  }
     
     method cambiarImagen(){
     	indeximg = (indeximg + 1) % 2
     }
 }
 
-object fabricaDeTrampas {
+/*object fabricaDeTrampas {
 	
 	method generarTrampa() {
 		return (new Trampa(position=randomizer.emptyPosition()))
 	}
-}
-
+}*/
 
 object generadorDeTrampas { 
-	
+	var cantDeTrampas=0
 	method nuevaTrampa() {
-		const trampita = fabricaDeTrampas.generarTrampa()
+		
+		const trampita = new Trampa(position=randomizer.emptyPosition())
 			game.addVisual(trampita)
-			game.onTick(500,"ANIMACION", {trampita.cambiarImagen()})
+			cantDeTrampas+=1
+			
+			//game.onTick(1000,"ANIMACION", {trampita.cambiarImagen()})
+			trampita.animacion()
+			if(cantDeTrampas==10)game.removeTickEvent("NUEVA TRAMPA")
 	}
+	
+	method agregarTrampas(){ 
+	game.onTick(5000, "NUEVA TRAMPA", { self.nuevaTrampa() })
+	}
+	
 }   
 
 
