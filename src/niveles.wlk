@@ -22,6 +22,11 @@ object nivel1 {
 	const babosa2 = new Enemigo(position = game.at(12,5),direccion = derecha,movimientosALlegar= 7)
 	const babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
 	const babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
+	//cofres
+	const cofre=new Cofre(position= game.at(4,8))
+	const cofre2=new Cofre(position=game.at(11,8))
+	const cofre3=new Cofre(position=game.at(18,10))
+	const cofre4=new Cofre(position=game.at(18,1))
 	
 	//escenario
 	const habitacion1=new Habitacion()
@@ -30,6 +35,7 @@ object nivel1 {
 	const habitacion4=new Habitacion()
 	const pared1=new Habitacion()
 	const pared2=new Habitacion()
+	const pared3=new Habitacion()
 		
 	habitacion1.crear(6,6,game.at(0,6))
 	habitacion2.crear(6,6,game.at(7,6))
@@ -37,6 +43,12 @@ object nivel1 {
 	habitacion4.crear(7,4,game.at(13,0))
 	pared1.crearParedHorizontal(10, game.at(0,1))
  	pared2.crearParedVertical(3, game.at(2,7))
+ 	pared3.crearParedHorizontal(20,game.at(0,13))
+ 	
+ 	game.addVisual(cofre)
+ 	game.addVisual(cofre2)
+ 	game.addVisual(cofre3)
+ 	game.addVisual(cofre4)
  	
 	game.addVisual(agujero1)
 	game.addVisual(agujero2)
@@ -62,8 +74,9 @@ object nivel1 {
 	
 	//game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	generadorDeTrampas.agregarTrampas()
-	game.addVisual(llave)
 	
+	//game.addVisual(llave)
+	cofre.contenerLLave(new Llave())
 	game.addVisual(caballero)
 	
 //	config.configurarColisiones()

@@ -68,16 +68,21 @@ object caballero {
 		return posicion.x().between(0,game.width()-1) and posicion.y().between(0,game.height()-1)
 	}	
 		
-	method interactuarConObjetoDebajo() {
-		const objetos = game.colliders(self)
+	method interactuarConObjeto() {
+
+		var objetos = game.colliders(self)
+			objetos+=game.getObjectsIn(direccion.siguientePosicion(self.position()))
+
+			
 		if (objetos.isEmpty()) {
 			self.error("No hay nada acá")
 		}
-		return objetos.head().action()
+		 objetos.forEach({objeto=>objeto.action()})
+		 
 	}
 	
 	method finalizarJuego() {
-		game.schedule(2000, { game.stop() })
+		game.schedule(3000, { game.stop() })
 	}
 	method gane(){
 		game.say(self, "GANE PERRO")

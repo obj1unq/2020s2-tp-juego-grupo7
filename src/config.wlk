@@ -23,7 +23,7 @@ object config {
 		keyboard.right().onPressDo({ caballero.irASiEsPosible(caballero.position().right(1)) })
 		keyboard.down().onPressDo({ caballero.irASiEsPosible(caballero.position().down(1)) })
 		keyboard.up().onPressDo({ caballero.irASiEsPosible(caballero.position().up(1)) })
-		keyboard.e().onPressDo({ caballero.interactuarConObjetoDebajo() })
+		keyboard.e().onPressDo({ caballero.interactuarConObjeto() })
 			
 	}
 
