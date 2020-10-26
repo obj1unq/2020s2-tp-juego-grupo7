@@ -22,7 +22,6 @@ object nivel1 {
 	const babosa2 = new Enemigo(position = game.at(12,5),direccion = derecha,movimientosALlegar= 7)
 	const babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
 	const babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
-	
 	//escenario
 	const habitacion1=new Habitacion()
 	const habitacion2=new Habitacion()
@@ -30,6 +29,12 @@ object nivel1 {
 	const habitacion4=new Habitacion()
 	const pared1=new Habitacion()
 	const pared2=new Habitacion()
+	//power ups
+	const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
+	const monedaOro = new MonedaDeOro(position = game.at(4, 7))
+	const monedaPlata = new MonedaDePlata(position = game.at(18, 2))
+	
+	
 		
 	habitacion1.crear(6,6,game.at(0,6))
 	habitacion2.crear(6,6,game.at(7,6))
@@ -48,9 +53,9 @@ object nivel1 {
 	game.addVisual(babosa3)
 	game.addVisual(babosa4)
 	
-	game.addVisual(monedero.crearMoneda("Bronze", game.at(10, 9)))
-	game.addVisual(monedero.crearMoneda("Gold", game.at(4, 7)))
-	game.addVisual(monedero.crearMoneda("Silver", game.at(18, 2)))
+	game.addVisual(animator.crearObjetoAnimado(monedaBronze))
+	game.addVisual(animator.crearObjetoAnimado(monedaOro))
+	game.addVisual(animator.crearObjetoAnimado(monedaPlata))
 	
 	game.addVisual(aberturas.crearPuerta(cerrada, game.at(1, 6)))
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(16, 6)))
@@ -66,7 +71,7 @@ object nivel1 {
 	
 	game.addVisual(caballero)
 	
-//	config.configurarColisiones()
+	config.configurarColisiones()
 	config.configurarTeclas()
 	config.configurarAnimaciones()
 	

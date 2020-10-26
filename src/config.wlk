@@ -8,7 +8,7 @@ object config {
 	
 	method configurarAnimaciones(){
 
-		game.onTick(100, "ANIMACION", { monedero.cambiarImagenMonedas()
+		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()
 										caballero.cambiarImagen()
 		})
 		
@@ -28,9 +28,9 @@ object config {
 	}
 
 	
-//	method configurarColisiones() {
-//		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
-//		})
-//	}
+	method configurarColisiones() {
+		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
+		})
+	}
 
 }

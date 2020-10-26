@@ -8,15 +8,13 @@ class Trampa {
     const property position = game.at(5,5)
     var property indeximg = 0
     method image() = "trampapinche_" + indeximg +".png"
-    
     method action() {}
-    
     method colisiono(personaje) {
     	personaje.position(position)
     	personaje.sacarVida()
-    	
-    	
+    		
     }
+    
     method animacion(){
   	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
     	

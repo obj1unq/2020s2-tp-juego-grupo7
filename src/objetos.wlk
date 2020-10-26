@@ -6,30 +6,46 @@ import enemigos.*
 // MONEDAS
 
 class Moneda {
-	var property tipo = "Gold"
+//	var property tipo = oro
 	var property position = game.at(10, 9)
 	var indexImg = 0
 	method action() {}	
-	method image() = tipo + "_2" + indexImg + ".png" 
+	method image() 
 	method colisiono(personaje){ personaje.position(position); game.removeVisual(self) }
-	method cambiarImagen() {
-		indexImg = (indexImg+1) % 10
-	}
+	method cambiarImagen() { indexImg = (indexImg+1) % 10 }
 	
 	
 }
 
-object monedero {
-	const monedas = #{}
+class MonedaDeOro inherits Moneda {
+	override method image() = "Gold_2"+ indexImg.toString() + ".png"	
+}
+
+class MonedaDePlata inherits Moneda {
+	override method image() = "Silver_2"+ indexImg.toString() + ".png"	
+}
+
+class MonedaDeBronze inherits Moneda {
+	override method image() = "Bronze_2"+ indexImg.toString() + ".png"	
+}
+
+
+object animator {
+	const visuales = #{} 
 	
-	method crearMoneda (_tipo, _position){
-		const monedaCreada = new Moneda(tipo = _tipo, position = _position)
-		monedas.add(monedaCreada)
-		return monedaCreada	
+//	method crearMoneda (_tipo, _position){
+//		const monedaCreada = new Moneda(tipo = _tipo, position = _position)
+//		monedas.add(monedaCreada)
+//		return monedaCreada	
+//	}
+
+	method crearObjetoAnimado(objeto){
+		visuales.add(objeto)
+		return objeto
 	}
 	
-	method cambiarImagenMonedas() {
-		monedas.forEach({moneda => moneda.cambiarImagen()})
+	method cambiarImagenes() {
+		visuales.forEach({objeto => objeto.cambiarImagen()})
 	}
 	
 }
