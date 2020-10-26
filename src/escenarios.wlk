@@ -8,7 +8,7 @@ class BloqueDePared{
 	method agregarBloqueAlEscenario(){
 		game.addVisual(self)
 	}
-		
+	method action(){}	
 	method colisiono(personaje) {}
 
 }

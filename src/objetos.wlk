@@ -106,7 +106,31 @@ object aberturas {
 	
 }
 
-object llave{
+class Cofre{
+	var property position
+	var property imagenes=["cofre.png","cofre_abierto.png"]
+	var property image=imagenes.first()
+	const contenedor=[]
+	
+	method cambiarImagen(){
+		image=imagenes.last()
+	}
+	method action(){
+		self.cambiarImagen()
+		if(self.contieneLlave())
+			game.addVisualIn(contenedor.first(),caballero.position())
+	}
+	method contieneLlave(){
+		return contenedor.size()>0
+	}
+	method colisiono(personaje){
+	}
+	method contenerLLave(unaLlave){
+		contenedor.add(unaLlave)
+	}
+}
+
+class Llave{
 	var property position=game.at(11,7)
 	method image()="llaveprueba-2.png"
 	
