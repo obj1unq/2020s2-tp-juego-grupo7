@@ -4,7 +4,7 @@ import enemigos.*
 
 object caballero {
 	var indexImg = 0
-	var property position = game.at(0,0)
+	var property position = game.at(0,12)
 	var property direccion = derecha
 	const monedas =[]
 	var property nivelDeVida = 3
@@ -17,18 +17,39 @@ object caballero {
 		indexImg = (indexImg+1) % 4	
 	}
 	
-	method perder() {
-		game.say(self, "PERDI INSSSSTA")
-		self.finalizarJuego()
+	method agregarMoneda(moneda){
+		monedas.add(moneda)
 	}
 	
-	method sacarVida() {
+	method tengoMonedas() {
+		return monedas.size() > 0
+	}
+	
+	method perderMoneda(moneda){
+		monedas.remove(moneda)	
+	}
+	
+//	method sacarVida() {
+//		if (self.tengoMonedas()){
+//			monedas.forEach({moneda => moneda.sacarVida(self)})
+//		}
+//		else {self.sacarVidaOPerder()}
+//	}
+//	
+	
+	method sacarVida(){
 		if (nivelDeVida > 1) { 
 			nivelDeVida -= 1;
-			game.say(self, "Te queda " + nivelDeVida + " vida") }
+			game.say(self, "Te queda " + nivelDeVida.toString() + " vida") }
 			else {self.perder()}
 	}
 	
+	method caerEnAgujero(){
+		if (self.tengoMonedas()){
+			monedas.forEach({moneda => moneda.caerEnAgujero(self)})
+		}
+		else {game.removeVisual(self); self.finalizarJuego()}
+	}
 	
 /* 	method perderVida(){
 		if (not vida == 0){
@@ -81,12 +102,19 @@ object caballero {
 		 
 	}
 	
-	method finalizarJuego() {
-		game.schedule(3000, { game.stop() })
+	
+	method perder() {
+		game.say(self, "PERDI INSSSSTA")
+		self.finalizarJuego()
 	}
+		
 	method gane(){
 		game.say(self, "GANE PERRO")
 		self.finalizarJuego()
+	}
+
+	method finalizarJuego() {
+		game.schedule(3000, { game.stop() })
 	}
 
 

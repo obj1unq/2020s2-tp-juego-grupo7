@@ -44,7 +44,7 @@ object generadorDeTrampas {
 			
 			//game.onTick(1000,"ANIMACION", {trampita.cambiarImagen()})
 			trampita.animacion()
-			if(cantDeTrampas==10)game.removeTickEvent("NUEVA TRAMPA")
+			if(cantDeTrampas==4)game.removeTickEvent("NUEVA TRAMPA")
 	}
 	
 	method agregarTrampas(){ 
@@ -65,7 +65,6 @@ class Agujero{
 	}
 	
 	method colisiono(personaje){
-		game.removeVisual(personaje)
-		personaje.finalizarJuego()
+		personaje.caerEnAgujero()
 	}
 }

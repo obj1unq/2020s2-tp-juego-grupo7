@@ -7,10 +7,7 @@ import enemigos.*
 object config {
 	
 	method configurarAnimaciones(){
-
-		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()
-										caballero.cambiarImagen()
-		})
+		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
 		
 	}
 		

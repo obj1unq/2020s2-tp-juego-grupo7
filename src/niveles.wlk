@@ -86,7 +86,7 @@ object nivel1 {
 	
 	//game.addVisual(llave)
 	cofre.contenerLLave(new Llave())
-	game.addVisual(caballero)
+	game.addVisual(animator.crearObjetoAnimado(caballero))
 	
 	config.configurarColisiones()
 	config.configurarTeclas()

@@ -11,22 +11,34 @@ class Moneda {
 	var indexImg = 0
 	method action() {}	
 	method image() 
-	method colisiono(personaje){ personaje.position(position); game.removeVisual(self) }
+	method colisiono(personaje){ 
+		personaje.position(position)
+		personaje.agregarMoneda(self)
+		game.removeVisual(self)
+	}
 	method cambiarImagen() { indexImg = (indexImg+1) % 10 }
-	
+	method sacarVida(personaje)
+	method caerEnAgujero(personaje)
 	
 }
 
 class MonedaDeOro inherits Moneda {
-	override method image() = "Gold_2"+ indexImg.toString() + ".png"	
+	override method image() = "Gold_2"+ indexImg.toString() + ".png"
+	override method sacarVida(personaje) { personaje.sacarVidaOPerder() }
+	override method caerEnAgujero(personaje){ personaje.perderMoneda(self) }	
 }
 
 class MonedaDePlata inherits Moneda {
-	override method image() = "Silver_2"+ indexImg.toString() + ".png"	
+	override method image() = "Silver_2"+ indexImg.toString() + ".png"
+	override method sacarVida(personaje) { personaje.sacarVidaOPerder() }
+	override method caerEnAgujero(personaje){ personaje.caerEnAgujero() }	
 }
 
 class MonedaDeBronze inherits Moneda {
-	override method image() = "Bronze_2"+ indexImg.toString() + ".png"	
+	override method image() = "Bronze_2"+ indexImg.toString() + ".png"
+	override method sacarVida(personaje) { personaje.perderMoneda(self) }
+	override method caerEnAgujero(personaje){ personaje.caerEnAgujero() }
+	
 }
 
 
