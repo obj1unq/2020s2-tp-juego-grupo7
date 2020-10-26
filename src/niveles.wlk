@@ -48,10 +48,10 @@ object nivel1 {
 	game.addVisual(agujero3)
 	game.addVisual(agujero4)
 	
-	game.addVisual(babosa)
-	game.addVisual(babosa2)
-	game.addVisual(babosa3)
-	game.addVisual(babosa4)
+	game.addVisual(animator.crearObjetoAnimado(babosa))
+	game.addVisual(animator.crearObjetoAnimado(babosa2))
+	game.addVisual(animator.crearObjetoAnimado(babosa3))
+	game.addVisual(animator.crearObjetoAnimado(babosa4))
 	
 	game.addVisual(animator.crearObjetoAnimado(monedaBronze))
 	game.addVisual(animator.crearObjetoAnimado(monedaOro))
@@ -75,13 +75,10 @@ object nivel1 {
 	config.configurarTeclas()
 	config.configurarAnimaciones()
 	
-	game.onTick(100,"ANIMACION", {babosa.cambiarImagen()})
+	
 	game.onTick(500, "enemigo", { babosa.mover()})
-	game.onTick(100,"ANIMACION", {babosa2.cambiarImagen()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
-	game.onTick(100,"ANIMACION", {babosa3.cambiarImagen()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
-	game.onTick(100,"ANIMACION", {babosa4.cambiarImagen()})
 	game.onTick(200, "enemigo", { babosa4.mover()})
 	
 	}
