@@ -143,14 +143,14 @@ class Cofre{
 }
 
 class Llave{
-	var property position=game.at(11,7)
+	var property position
 	method image()="llaveprueba-2.png"
 	
 	method action(){
 		game.removeVisual(self)
 		caballero.gane()
 	}
-	method colisiono(personaje){ personaje.position(position) }
+	method colisiono(personaje){ }
 }
 
 

@@ -1,7 +1,7 @@
 import wollok.game.*
 
 class BloqueDePared{
-	var property position=new Position()
+	var property position
 	var property tipo = "muro"
 	
 	method image()= tipo + ".png"
@@ -14,7 +14,7 @@ class BloqueDePared{
 }
 
 
-class Habitacion {  
+object habitacion {  
 	var pared=[]
 	method crear(largoDePared,altoDePared, posicionInicial){
 	
