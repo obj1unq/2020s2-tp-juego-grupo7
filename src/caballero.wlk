@@ -44,12 +44,14 @@ object caballero {
 			else {self.perder()}
 	}
 	
-	method caerEnAgujero(){
-		if (self.tengoMonedas()){
-			monedas.forEach({moneda => moneda.caerEnAgujero(self)})
-		}
-		else {game.removeVisual(self); self.finalizarJuego()}
-	}
+//	method caerEnAgujero(){
+//		if (self.tengoMonedas()){
+//			monedas.forEach({moneda => moneda.caerEnAgujero(self)})
+//		}
+//		else {game.removeVisual(self); self.finalizarJuego()}
+//	}
+
+	method caerEnAgujero(){game.removeVisual(self); self.finalizarJuego()}
 	
 /* 	method perderVida(){
 		if (not vida == 0){
