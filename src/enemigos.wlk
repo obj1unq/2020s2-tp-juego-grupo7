@@ -35,11 +35,12 @@ class Enemigo{
 	}
 	
 	method colisiono(personaje){
-		personaje.position(position)
-		personaje.sacarVida() 
+		personaje.hacerteDanio() 
 	}
 	
-	
+	method voyAColisionar(personaje){
+		personaje.position(position)
+	}
 }	
 
 

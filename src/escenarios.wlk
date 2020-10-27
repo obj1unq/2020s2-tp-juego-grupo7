@@ -9,7 +9,8 @@ class BloqueDePared{
 		game.addVisual(self)
 	}
 	method action(){}	
-	method colisiono(personaje) {}
+	method voyAColisionar(personaje) {}
+	method coisiono(personaje) {} //posria no estar?
 
 }
 

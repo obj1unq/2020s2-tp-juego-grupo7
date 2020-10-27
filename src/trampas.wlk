@@ -10,11 +10,9 @@ class Trampa {
     method image() = "trampapinche_" + indeximg +".png"
     method action() {}
     method colisiono(personaje) {
-    	personaje.position(position)
-    	personaje.sacarVida()
-    		
+    	personaje.pinchate()	
     }
-    
+    method voyAColisionar(personaje) {personaje.position(position)}
     method animacion(){
   	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
     	
@@ -41,10 +39,11 @@ object generadorDeTrampas {
 		const trampita = new Trampa(position=randomizer.emptyPosition())
 			game.addVisual(trampita)
 			cantDeTrampas+=1
-			
+			game.removeVisual(caballero)
+			game.addVisual(caballero)
 			//game.onTick(1000,"ANIMACION", {trampita.cambiarImagen()})
 			trampita.animacion()
-			if(cantDeTrampas==4)game.removeTickEvent("NUEVA TRAMPA")
+			if(cantDeTrampas==7)game.removeTickEvent("NUEVA TRAMPA")
 	}
 	
 	method agregarTrampas(){ 
@@ -65,6 +64,8 @@ class Agujero{
 	}
 	
 	method colisiono(personaje){
-		personaje.caerEnAgujero()
+		personaje.caerAgujero()
 	}
+	
+	method voyAColisionar(personaje){ personaje.position(position) }
 }
