@@ -27,18 +27,10 @@ object nivel1 {
 
 	//cofres
 	const cofre=new Cofre(position= game.at(4,8))
-	const cofre2=new Cofre(position=game.at(11,8))
+	const cofre2=new Cofre(position=game.at(11,10))
 	const cofre3=new Cofre(position=game.at(18,10))
 	const cofre4=new Cofre(position=game.at(18,1))
-
-	//escenario
-	const habitacion1=new Habitacion()
-	const habitacion2=new Habitacion()
-	const habitacion3=new Habitacion()
-	const habitacion4=new Habitacion()
-	const pared1=new Habitacion()
-	const pared2=new Habitacion()
-	const pared3=new Habitacion()
+	const cofre5=new Cofre(position=game.at(0,0))
 	
 	//power ups
 	const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
@@ -46,18 +38,19 @@ object nivel1 {
 	const monedaPlata = new MonedaDePlata(position = game.at(18, 2))
 
 	
-	habitacion1.crear(6,6,game.at(0,6))
-	habitacion2.crear(6,6,game.at(7,6))
-	habitacion3.crear(6,6,game.at(14,6))
-	habitacion4.crear(7,4,game.at(13,0))
-	pared1.crearParedHorizontal(10, game.at(0,1))
- 	pared2.crearParedVertical(3, game.at(2,7))
- 	pared3.crearParedHorizontal(20,game.at(0,13))
+	habitacion.crear(6,6,game.at(0,6))
+	habitacion.crear(6,6,game.at(7,6))
+	habitacion.crear(6,6,game.at(14,6))
+	habitacion.crear(7,4,game.at(13,0))
+	habitacion.crearParedHorizontal(10, game.at(0,1))
+ 	habitacion.crearParedVertical(3, game.at(2,7))
+ 	habitacion.crearParedHorizontal(20,game.at(0,13))
  	
  	game.addVisual(cofre)
  	game.addVisual(cofre2)
  	game.addVisual(cofre3)
  	game.addVisual(cofre4)
+ 	game.addVisual(cofre5)
  	
 	game.addVisual(agujero1)
 	game.addVisual(agujero2)
@@ -85,7 +78,7 @@ object nivel1 {
 	generadorDeTrampas.agregarTrampas()
 	
 	//game.addVisual(llave)
-	cofre.contenerLLave(new Llave())
+	cofre.contenerLLave(new Llave(position=cofre.position()))
 	game.addVisual(animator.crearObjetoAnimado(caballero))
 	
 	config.configurarColisiones()
