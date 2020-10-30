@@ -7,12 +7,18 @@ class Trampa {
 	
     const property position = game.at(5,5)
     var property indeximg = 0
-    method image() = "trampapinche_" + indeximg +".png"
+    var property pinches = desactivados
+    method image() = pinches.image()
     method action() {}
     method colisiono(personaje) {
-    	personaje.pinchate()	
+    	}
+    
+    
+    	 
+    method voyAColisionar(personaje) {
+    	personaje.position(position)
+    	pinches.voyAColisionar(personaje)
     }
-    method voyAColisionar(personaje) {personaje.position(position)}
     method animacion(){
   	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
     	
@@ -21,9 +27,57 @@ class Trampa {
  //  }
     
     method cambiarImagen(){
-    	indeximg = (indeximg + 1) % 2
+    	pinches.cambiarEstado(self)
     }
 }
+
+
+
+
+object desactivados{
+	
+	method image(){
+		return "trampapinche_0.png"
+	}
+	
+	method cambiarEstado(trampa){
+		trampa.pinches(activados)
+	}
+	
+	method voyAColisionar(personaje){}
+	
+	method colisiono(personaje){}
+}
+
+
+
+
+
+object activados{
+	
+	method image(){
+		return "trampapinche_1.png"
+	}
+	
+	method cambiarEstado(trampa){
+		trampa.pinches(desactivados)
+	}
+	
+	method voyAColisionar(personaje){
+		personaje.pinchate()	
+	}
+	
+	method colisiono(personaje){
+		personaje.pinchate()
+	}
+}
+
+
+
+
+
+
+
 
 /*object fabricaDeTrampas {
 	

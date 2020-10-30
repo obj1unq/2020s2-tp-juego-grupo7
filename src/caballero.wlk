@@ -1,6 +1,6 @@
 import wollok.game.*
 import enemigos.*
-
+import trampas.*
 
 object caballero {
 	var indexImg = 0
@@ -44,6 +44,20 @@ object caballero {
 		formaDeCaer.sacarVida(self)
 	}
 	
+	
+	
+	method estoyEnPinche(){
+		const objeto = game.colliders(self)
+		if (not objeto.isEmpty() and objeto.first().image() == activados.image()) {
+			activados.colisiono(self)
+		}
+		else if (nivelDeVida == 0){
+		game.removeTickEvent("verificar si estoy en pinche")
+		}
+	}
+			
+		
+	
 //	method sacarVida() {
 //		if (self.tengoMonedas()){
 //			monedas.forEach({moneda => moneda.sacarVida(self)})
@@ -64,7 +78,12 @@ object caballero {
 //		else {game.removeVisual(self); self.finalizarJuego()}
 //	}
 
-	method caerEnAgujero(){game.removeVisual(self); self.finalizarJuego()}
+	method caerEnAgujero(){
+		game.removeTickEvent("verificar si estoy en pinche")
+		game.removeTickEvent("NUEVA TRAMPA")
+		game.removeVisual(self);
+		self.finalizarJuego()
+	}
 	
 /* 	method perderVida(){
 		if (not vida == 0){

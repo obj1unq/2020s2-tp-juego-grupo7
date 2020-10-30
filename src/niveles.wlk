@@ -90,7 +90,7 @@ object nivel1 {
 	game.onTick(1000, "enemigo", { babosa2.mover()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
 	game.onTick(200, "enemigo", { babosa4.mover()})
-	
+	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
 	}
 	
 	
