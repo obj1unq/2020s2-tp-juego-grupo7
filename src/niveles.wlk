@@ -30,7 +30,7 @@ object nivel1 {
 	const cofre2=new Cofre(position=game.at(11,10))
 	const cofre3=new Cofre(position=game.at(18,10))
 	const cofre4=new Cofre(position=game.at(18,1))
-	const cofre5=new Cofre(position=game.at(0,0))
+	const cofre5=new Cofre(position=game.at(19,12))
 	
 	//power ups
 	const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
