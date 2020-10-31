@@ -24,22 +24,41 @@ class Enemigo{
 	}
 	
 	method mover(){
-		if (movimientosRealizados == movimientosALlegar ){
+		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position)) 
+		
+		if (objetoAlLado.contains(caballero)){
+			position = direccion.siguientePosicion(position)
+			movimientosRealizados +=1
+		}
+		else if (not objetoAlLado.isEmpty() or not self.estoyDentroDelTablero(direccion.siguientePosicion(position)) or self.completeRecorrido()){
 			direccion = direccion.direccionOpuesta()
 			movimientosRealizados = 0
 		}
 		else{
 			position = direccion.siguientePosicion(position)
 			movimientosRealizados +=1
+			
 		}
 	}
 	
-	method colisiono(personaje){
-		personaje.position(position)
-		personaje.sacarVida() 
+	
+	
+	method estoyDentroDelTablero(posicion){
+		return posicion.x().between(0,game.width()-1) and posicion.y().between(0,game.height()-1)
 	}
 	
 	
+	method completeRecorrido(){
+		return  movimientosRealizados == movimientosALlegar
+	}
+	
+	method colisiono(personaje){
+		personaje.hacerteDanio() 
+	}
+	
+	method voyAColisionar(personaje){
+		personaje.position(position)
+	}
 }	
 
 

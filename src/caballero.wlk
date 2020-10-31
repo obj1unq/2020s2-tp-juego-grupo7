@@ -1,14 +1,17 @@
 import wollok.game.*
 import enemigos.*
-
+import trampas.*
 
 object caballero {
 	var indexImg = 0
-	var property position = game.at(0,12)
+	var property position = game.at(0,0)
 	var property direccion = derecha
 	const monedas =[]
 	var property nivelDeVida = 3
-	
+	var property formaDePincharse = perderVida
+	var property formaDeRecibirDanio = perderVida
+	var property formaDeCaer = caer
+
 	method image() {
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
 	}
@@ -29,6 +32,32 @@ object caballero {
 		monedas.remove(moneda)	
 	}
 	
+	method pinchate(){
+		formaDePincharse.sacarVida(self)
+	}
+	
+	method hacerteDanio(){
+		formaDeRecibirDanio.sacarVida(self)
+	}
+	
+	method caerAgujero(){
+		formaDeCaer.sacarVida(self)
+	}
+	
+	
+	
+	method estoyEnPinche(){
+		const objeto = game.colliders(self)
+		if (not objeto.isEmpty() and objeto.first().image() == activados.image()) {
+			activados.colisiono(self)
+		}
+		else if (nivelDeVida == 0){
+		game.removeTickEvent("verificar si estoy en pinche")
+		}
+	}
+			
+		
+	
 //	method sacarVida() {
 //		if (self.tengoMonedas()){
 //			monedas.forEach({moneda => moneda.sacarVida(self)})
@@ -38,10 +67,8 @@ object caballero {
 //	
 	
 	method sacarVida(){
-		if (nivelDeVida > 1) { 
-			nivelDeVida -= 1;
-			game.say(self, "Te queda " + nivelDeVida.toString() + " vida") }
-			else {self.perder()}
+		nivelDeVida -= 1
+		if (nivelDeVida == 0) self.perder() else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
 	}
 	
 //	method caerEnAgujero(){
@@ -51,7 +78,12 @@ object caballero {
 //		else {game.removeVisual(self); self.finalizarJuego()}
 //	}
 
-	method caerEnAgujero(){game.removeVisual(self); self.finalizarJuego()}
+	method caerEnAgujero(){
+		game.removeTickEvent("verificar si estoy en pinche")
+		game.removeTickEvent("NUEVA TRAMPA")
+		game.removeVisual(self);
+		self.finalizarJuego()
+	}
 	
 /* 	method perderVida(){
 		if (not vida == 0){
@@ -65,7 +97,7 @@ object caballero {
 		self.cambiarDireccion(nuevaPosicion)
 		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) 
 		if (objetosNuevaPosicion.size()>0){
-			objetosNuevaPosicion.head().colisiono(self)
+			objetosNuevaPosicion.head().voyAColisionar(self)
 		}
 		else{
 			self.irAConLimites(nuevaPosicion)
@@ -120,4 +152,36 @@ object caballero {
 	}
 
 
+}
+
+
+object perderVida {
+	method sacarVida(personaje){
+		personaje.sacarVida()
+	}
+	
+}
+
+object caer {
+	method sacarVida(personaje){
+		personaje.caerEnAgujero()
+	}
+}
+
+object powerUpPinches {
+	method sacarVida(personaje){
+		personaje.formaDePincharse(perderVida)
+	}
+}
+
+object powerUpDanio {
+	method sacarVida(personaje){
+		personaje.formaDeRecibirDanio(perderVida)
+	}
+}
+
+object powerUpAgujero {
+	method sacarVida(personaje){
+		personaje.formaDeCaer(caer)
+	}
 }

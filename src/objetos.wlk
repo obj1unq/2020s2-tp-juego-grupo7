@@ -6,39 +6,41 @@ import enemigos.*
 // MONEDAS
 
 class Moneda {
-//	var property tipo = oro
+
 	var property position = game.at(10, 9)
 	var indexImg = 0
-	method action() {}	
+	method action() {		
+		caballero.agregarMoneda(self)
+		game.removeVisual(self)}	
 	method image() 
-	method colisiono(personaje){ 
-		personaje.position(position)
-		personaje.agregarMoneda(self)
-		game.removeVisual(self)
-	}
+	method colisiono(personaje){ }
+	method voyAColisionar(personaje) {personaje.position(position)}
 	method cambiarImagen() { indexImg = (indexImg+1) % 10 }
-	method sacarVida(personaje)
-	method caerEnAgujero(personaje)
-	
+		
 }
 
 class MonedaDeOro inherits Moneda {
 	override method image() = "Gold_2"+ indexImg.toString() + ".png"
-	override method sacarVida(personaje) { personaje.sacarVidaOPerder() }
-	override method caerEnAgujero(personaje){ personaje.perderMoneda(self) }	
+	override method colisiono(personaje){ 
+		super(personaje)
+		personaje.formaDeCaer(powerUpAgujero)
+	}	
 }
 
 class MonedaDePlata inherits Moneda {
 	override method image() = "Silver_2"+ indexImg.toString() + ".png"
-	override method sacarVida(personaje) { personaje.sacarVidaOPerder() }
-	override method caerEnAgujero(personaje){ personaje.caerEnAgujero() }	
+	override method colisiono(personaje){ 
+		super(personaje)
+		personaje.formaDePincharse(powerUpPinches)
+	}	
 }
 
 class MonedaDeBronze inherits Moneda {
 	override method image() = "Bronze_2"+ indexImg.toString() + ".png"
-	override method sacarVida(personaje) { personaje.perderMoneda(self) }
-	override method caerEnAgujero(personaje){ personaje.caerEnAgujero() }
-	
+	override method colisiono(personaje){ 
+		super(personaje)
+		personaje.formaDeRecibirDanio(powerUpDanio)
+	}	
 }
 
 
@@ -62,27 +64,28 @@ object animator {
 	
 }
 
-// MONEDAS FIN
+
 
 class Puerta {
 	var property estado = cerrada
 	var property position = game.at(1, 6)	
 	method image() = estado.image() 
 	method action() {}
-	method colisiono(personaje){ estado.colisiono(personaje, position) }
+	method colisiono(personaje) {}
+	method voyAColisionar(personaje){ estado.voyAColisionar(personaje, position) }
 	method cambiarEstado() { estado.cambiar(self) }
 }
 
 object cerrada {
 	method cambiar(puerta){	puerta.estado(abierta) }
 	method image() = "puertaCerrada.png"
-	method colisiono(personaje, position){  }
+	method voyAColisionar(personaje, position){  }
 }
 
 object abierta {
 	method cambiar(puerta){	puerta.estado(cerrada) }
 	method image() = "puertaAbierta.png"
-	method colisiono(personaje, position){ personaje.position(position) }
+	method voyAColisionar(personaje, position){ personaje.position(position) }
 }
 
 
@@ -92,8 +95,8 @@ class Palanca {
 	var property position	
 	method image() = "palanca_" + estado + ".png" 
 	method action() {self.cambiarEstadoPuertas()}
-	method colisiono(personaje){ personaje.position(position) }
-	
+	method voyAColisionar(personaje){ personaje.position(position) }
+	method colisiono(personaje){  }
 	method cambiarEstadoPuertas() {
 		aberturas.cambiarEstadoPuertas()
 		estado = (estado+1) % 2
@@ -137,6 +140,7 @@ class Cofre{
 	}
 	method colisiono(personaje){
 	}
+	method voyAColisionar(personaje){  }
 	method contenerLLave(unaLlave){
 		contenedor.add(unaLlave)
 	}
@@ -151,6 +155,9 @@ class Llave{
 		caballero.gane()
 	}
 	method colisiono(personaje){ }
+
+	method voyAColisionar(personaje){ personaje.position(position) }
+
 }
 
 
