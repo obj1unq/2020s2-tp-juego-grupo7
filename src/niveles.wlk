@@ -37,7 +37,7 @@ object nivel1 {
 	const monedaOro = new MonedaDeOro(position = game.at(4, 7))
 	const monedaPlata = new MonedaDePlata(position = game.at(18, 2))
 
-	
+	//escenario
 	habitacion.crear(6,6,game.at(0,6))
 	habitacion.crear(6,6,game.at(7,6))
 	habitacion.crear(6,6,game.at(14,6))
@@ -46,6 +46,7 @@ object nivel1 {
  	habitacion.crearParedVertical(3, game.at(2,7))
  	habitacion.crearParedHorizontal(20,game.at(0,13))
  	
+ 	//visuales
  	game.addVisual(cofre)
  	game.addVisual(cofre2)
  	game.addVisual(cofre3)
@@ -77,8 +78,8 @@ object nivel1 {
 	//game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	generadorDeTrampas.agregarTrampas()
 	
-	//game.addVisual(llave)
 	cofre.contenerLLave(new Llave(position=cofre.position()))
+	
 	game.addVisual(animator.crearObjetoAnimado(caballero))
 	
 	config.configurarColisiones()

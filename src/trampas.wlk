@@ -40,8 +40,7 @@ object generadorDeTrampas {
 		
 		const trampita = new Trampa(position=randomizer.emptyPosition())
 			game.addVisual(trampita)
-			cantDeTrampas+=1
-			
+			cantDeTrampas+=1			
 			//game.onTick(1000,"ANIMACION", {trampita.cambiarImagen()})
 			trampita.animacion()
 			if(cantDeTrampas==4)game.removeTickEvent("NUEVA TRAMPA")
