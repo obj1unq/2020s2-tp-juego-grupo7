@@ -1,6 +1,7 @@
 import wollok.game.*
 import enemigos.*
 import trampas.*
+import escenarios.*
 
 object caballero {
 	var indexImg = 0
@@ -21,7 +22,7 @@ object caballero {
 	}
 	
 	method agregarMoneda(moneda){
-		monedas.add(moneda)
+		monedas.add(moneda)	
 	}
 	
 	method tengoMonedas() {
@@ -29,7 +30,8 @@ object caballero {
 	}
 	
 	method perderMoneda(moneda){
-		monedas.remove(moneda)	
+		monedas.remove(moneda)
+		atributos.monedaPerdida(moneda)	
 	}
 	
 	method pinchate(){
@@ -66,9 +68,10 @@ object caballero {
 //	}
 //	
 	
-	method sacarVida(){
-		nivelDeVida -= 1
-		if (nivelDeVida == 0) self.perder() else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
+	method sacarVida(){	
+		nivelDeVida -= 1	
+		atributos.disminuirVida(self)	
+		if (nivelDeVida == 0) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
 	}
 	
 //	method caerEnAgujero(){

@@ -1,4 +1,5 @@
 import wollok.game.*
+import caballero.*
 
 class BloqueDePared{
 	var property position
@@ -55,3 +56,30 @@ object habitacion {
   }
 	
 }
+
+object atributos{
+	const property recolectado=[]
+	const vidaImg=["corazonnull.png","corazonmedio.png"]
+	var property image="corazon.png"
+	const property position=game.at(0,13)
+
+	
+	method monedaRecolectada(unaMoneda){
+		recolectado.add(unaMoneda)
+		game.addVisualIn(unaMoneda, game.at(recolectado.size(),13))
+	}
+	method monedaPerdida(unaMoneda){
+		recolectado.remove(unaMoneda)
+		game.removeVisual(unaMoneda)}
+		
+	method vidaInicial(){game.addVisual(self)}
+	
+	method disminuirVida(personaje){
+		game.removeVisual(self)
+		if(personaje.nivelDeVida()>0)
+		self.image(vidaImg.get(personaje.nivelDeVida()-1))
+		self.vidaInicial()
+	}
+}
+
+

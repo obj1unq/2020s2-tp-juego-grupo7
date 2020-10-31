@@ -78,7 +78,10 @@ object nivel1 {
 	//game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	generadorDeTrampas.agregarTrampas()
 	
-	cofre.contenerLLave(new Llave(position=cofre.position()))
+	cofre.contener(new Llave(position=cofre.position()))
+//	cofre.contener(new MonedaDePlata(position = cofre.position()))
+	
+	atributos.vidaInicial()
 	
 	game.addVisual(animator.crearObjetoAnimado(caballero))
 	

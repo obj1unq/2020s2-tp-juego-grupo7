@@ -1,7 +1,7 @@
 import wollok.game.*
 import caballero.*
 import enemigos.*
-
+import escenarios.*
 
 // MONEDAS
 
@@ -11,7 +11,8 @@ class Moneda {
 	var indexImg = 0
 	method action() {		
 		caballero.agregarMoneda(self)
-		game.removeVisual(self)}	
+		game.removeVisual(self)
+		atributos.monedaRecolectada(self)}	
 	method image() 
 	method colisiono(personaje){ }
 	method voyAColisionar(personaje) {personaje.position(position)}
@@ -141,7 +142,7 @@ class Cofre{
 	method colisiono(personaje){
 	}
 	method voyAColisionar(personaje){  }
-	method contenerLLave(unaLlave){
+	method contener(unaLlave){
 		contenedor.add(unaLlave)
 	}
 }
