@@ -11,7 +11,8 @@ class Moneda {
 	var indexImg = 0
 	method action() {		
 		game.removeVisual(self)
-		atributos.monedaRecolectada(self)}	
+		atributos.monedaRecolectada(self)
+	}	
 	method image() 
 	method colisiono(personaje){ }
 	method voyAColisionar(personaje) {personaje.position(position)}
@@ -21,41 +22,38 @@ class Moneda {
 
 class MonedaDeOro inherits Moneda {
 	override method image() = "Gold_2"+ indexImg.toString() + ".png"
-	override method colisiono(personaje){ 
-		super(personaje)
-		personaje.formaDeCaer(powerUpAgujero)
+	override method action(){ 
+		super()
+		caballero.formaDeCaer(powerUpAgujero)
 		powerUpAgujero.moneda(self)
-	}	
+	}
+	
 }
 
 class MonedaDePlata inherits Moneda {
 	override method image() = "Silver_2"+ indexImg.toString() + ".png"
-	override method colisiono(personaje){ 
-		super(personaje)
-		personaje.formaDePincharse(powerUpPinches)
+	override method action(){ 
+		super()
+		caballero.formaDePincharse(powerUpPinches)
 		powerUpPinches.moneda(self)
-	}	
+			}		
+
 }
 
 class MonedaDeBronze inherits Moneda {
 	override method image() = "Bronze_2"+ indexImg.toString() + ".png"
-	override method colisiono(personaje){ 
-		super(personaje)
-		personaje.formaDeRecibirDanio(powerUpDanio)
+	override method action(){ 
+		super()
+		caballero.formaDeRecibirDanio(powerUpDanio)
 		powerUpDanio.moneda(self)
-	}	
+	}
+	
 }
 
 
 object animator {
 	const visuales = #{} 
 	
-//	method crearMoneda (_tipo, _position){
-//		const monedaCreada = new Moneda(tipo = _tipo, position = _position)
-//		monedas.add(monedaCreada)
-//		return monedaCreada	
-//	}
-
 	method crearObjetoAnimado(objeto){
 		visuales.add(objeto)
 		return objeto

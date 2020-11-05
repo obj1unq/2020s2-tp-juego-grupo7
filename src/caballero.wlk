@@ -7,7 +7,7 @@ object caballero {
 	var indexImg = 0
 	var property position = game.at(0,0)
 	var property direccion = derecha
-	const monedas =[]
+//	const monedas =[]
 	var property nivelDeVida = 3
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
@@ -36,7 +36,6 @@ object caballero {
 	
 	method pinchate(){
 		formaDePincharse.sacarVida(self)
-		//self.perderMoneda(formaDePincharse.moneda())
 	}
 	
 	method hacerteDanio(){
@@ -70,7 +69,8 @@ object caballero {
 //	
 	
 	method sacarVida(){	
-		nivelDeVida -= 1	
+		
+		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
 		if (nivelDeVida == 0) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
 	}
@@ -176,23 +176,23 @@ object caer {
 object powerUpPinches {
 	var property moneda
 	method sacarVida(personaje){
-		personaje.formaDePincharse(perderVida)
 		atributos.monedaPerdida(moneda)
+		personaje.formaDePincharse(perderVida)
 	}
 }
 
 object powerUpDanio {
 	var property moneda
 	method sacarVida(personaje){
-		personaje.formaDeRecibirDanio(perderVida)
 		atributos.monedaPerdida(moneda)
+		personaje.formaDeRecibirDanio(perderVida)
 	}
 }
 
 object powerUpAgujero {
 	var property moneda
 	method sacarVida(personaje){
-		personaje.formaDeCaer(caer)
 		atributos.monedaPerdida(moneda)
+		personaje.formaDeCaer(caer)
 	}
 }
