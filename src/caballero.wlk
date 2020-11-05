@@ -21,21 +21,22 @@ object caballero {
 		indexImg = (indexImg+1) % 4	
 	}
 	
-	method agregarMoneda(moneda){
-		monedas.add(moneda)	
-	}
+	//method agregarMoneda(moneda){
+	//	monedas.add(moneda)	
+	//}
 	
-	method tengoMonedas() {
-		return monedas.size() > 0
-	}
+	//method tengoMonedas() {
+	//	return monedas.size() > 0
+	//}
 	
-	method perderMoneda(moneda){
-		monedas.remove(moneda)
-		atributos.monedaPerdida(moneda)	
-	}
+	//method perderMoneda(moneda){
+
+	//	atributos.monedaPerdida(moneda)	
+	//}
 	
 	method pinchate(){
 		formaDePincharse.sacarVida(self)
+		//self.perderMoneda(formaDePincharse.moneda())
 	}
 	
 	method hacerteDanio(){
@@ -153,12 +154,13 @@ object caballero {
 	method finalizarJuego() {
 		game.schedule(3000, { game.stop() })
 	}
-
+	
 
 }
 
 
 object perderVida {
+	var property moneda
 	method sacarVida(personaje){
 		personaje.sacarVida()
 	}
@@ -172,19 +174,25 @@ object caer {
 }
 
 object powerUpPinches {
+	var property moneda
 	method sacarVida(personaje){
 		personaje.formaDePincharse(perderVida)
+		atributos.monedaPerdida(moneda)
 	}
 }
 
 object powerUpDanio {
+	var property moneda
 	method sacarVida(personaje){
 		personaje.formaDeRecibirDanio(perderVida)
+		atributos.monedaPerdida(moneda)
 	}
 }
 
 object powerUpAgujero {
+	var property moneda
 	method sacarVida(personaje){
 		personaje.formaDeCaer(caer)
+		atributos.monedaPerdida(moneda)
 	}
 }

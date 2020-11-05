@@ -10,7 +10,6 @@ class Moneda {
 	var property position = game.at(10, 9)
 	var indexImg = 0
 	method action() {		
-		caballero.agregarMoneda(self)
 		game.removeVisual(self)
 		atributos.monedaRecolectada(self)}	
 	method image() 
@@ -25,6 +24,7 @@ class MonedaDeOro inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDeCaer(powerUpAgujero)
+		powerUpAgujero.moneda(self)
 	}	
 }
 
@@ -33,6 +33,7 @@ class MonedaDePlata inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDePincharse(powerUpPinches)
+		powerUpPinches.moneda(self)
 	}	
 }
 
@@ -41,6 +42,7 @@ class MonedaDeBronze inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDeRecibirDanio(powerUpDanio)
+		powerUpDanio.moneda(self)
 	}	
 }
 
