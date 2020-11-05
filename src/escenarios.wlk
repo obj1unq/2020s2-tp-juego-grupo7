@@ -59,7 +59,7 @@ object habitacion {
 
 object atributos{
 	const property recolectado=[]
-	const vidaImg=["sincorazones.png","mediocorazon.png","uncorazon.png","uncorazonymedio.png","doscorazones.png","doscorazonesymedio.png"]
+	const property vidaImg=["sincorazones.png","mediocorazon.png","uncorazon.png","uncorazonymedio.png","doscorazones.png","doscorazonesymedio.png"]
 	var property image="trescorazones.png"
 	const property position=game.at(2,13)
 
