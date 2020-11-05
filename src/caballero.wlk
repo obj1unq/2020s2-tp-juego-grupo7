@@ -72,7 +72,7 @@ object caballero {
 		
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
-		if (nivelDeVida == 0) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
+		if (nivelDeVida == 1) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
 	}
 	
 //	method caerEnAgujero(){
@@ -83,10 +83,12 @@ object caballero {
 //	}
 
 	method caerEnAgujero(){
+		if (formaDeCaer == caer){
 		game.removeTickEvent("verificar si estoy en pinche")
 		game.removeTickEvent("NUEVA TRAMPA")
 		game.removeVisual(self);
 		self.finalizarJuego()
+		}
 	}
 	
 /* 	method perderVida(){

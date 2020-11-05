@@ -63,6 +63,7 @@ object atributos{
 	var property image="corazon3.png"
 	const property position=game.at(1,13)
 
+
 	
 	method monedaRecolectada(unaMoneda){
 		recolectado.add(unaMoneda)
