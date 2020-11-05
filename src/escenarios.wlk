@@ -59,14 +59,15 @@ object habitacion {
 
 object atributos{
 	const property recolectado=[]
-	const vidaImg=["corazonnull.png","corazonmedio.png"]
-	var property image="corazon.png"
-	const property position=game.at(0,13)
+	const vidaImg=["sincorazones.png","mediocorazon.png","uncorazon.png","uncorazonymedio.png","doscorazones.png","doscorazonesymedio.png"]
+	var property image="trescorazones.png"
+	const property position=game.at(2,13)
 
 	
 	method monedaRecolectada(unaMoneda){
 		recolectado.add(unaMoneda)
-		game.addVisualIn(unaMoneda, game.at(recolectado.size(),13))
+		unaMoneda.ubicar()
+		//game.addVisualIn(unaMoneda, game.at(recolectado.size(),13))
 	}
 	method monedaPerdida(unaMoneda){
 		recolectado.remove(unaMoneda)

@@ -25,6 +25,10 @@ class MonedaDeOro inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDeCaer(powerUpAgujero)
+	}
+	
+	method ubicar(){
+		game.addVisualIn(self,game.at(8,13))
 	}	
 }
 
@@ -33,7 +37,11 @@ class MonedaDePlata inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDePincharse(powerUpPinches)
-	}	
+	}
+	
+	method ubicar(){
+		game.addVisualIn(self,game.at(10,13))
+	}		
 }
 
 class MonedaDeBronze inherits Moneda {
@@ -41,7 +49,11 @@ class MonedaDeBronze inherits Moneda {
 	override method colisiono(personaje){ 
 		super(personaje)
 		personaje.formaDeRecibirDanio(powerUpDanio)
-	}	
+	}
+	
+	method ubicar(){
+		game.addVisualIn(self,game.at(12,13))
+	}		
 }
 
 
