@@ -24,9 +24,15 @@ class Enemigo{
 	}
 	
 	method mover(){
-		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position)) 
+		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position))
+		const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
 		
-		if (objetoAlLado.contains(caballero)){
+		if (imagenesObjetos.contains("trampapinche_0.png") or imagenesObjetos.contains("trampapinche_1.png") or imagenesObjetos.contains("puertaAbierta.png")){
+			direccion = direccion.direccionOpuesta()
+			movimientosRealizados = 0
+		}
+		
+		else if (objetoAlLado.contains(caballero)){
 			position = direccion.siguientePosicion(position)
 			movimientosRealizados +=1
 		}
