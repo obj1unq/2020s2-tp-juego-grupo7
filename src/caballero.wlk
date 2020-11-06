@@ -8,7 +8,7 @@ object caballero {
 	var property position = game.at(0,0)
 	var property direccion = derecha
 //	const monedas =[]
-	var property nivelDeVida = 6
+	var property nivelDeVida = 3
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
 	var property formaDeCaer = caer
@@ -172,7 +172,7 @@ object perderVida {
 object caer {
 	method sacarVida(personaje){
 		personaje.caerEnAgujero()
-		personaje.formaDeCaer(caer)
+//		personaje.formaDeCaer(caer)
 	}
 }
 

@@ -25,18 +25,23 @@ object nivel1 {
 	const babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
 	const babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
 
+	
+	//power ups
+	const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
+	const monedaOro = new MonedaDeOro(position = game.at(4, 7))
+	const monedaPlata = new MonedaDePlata(position = game.at(18, 2))
+	
 	//cofres
 	const cofre=new Cofre(position= game.at(4,8))
 	const cofre2=new Cofre(position=game.at(11,10))
 	const cofre3=new Cofre(position=game.at(18,10))
 	const cofre4=new Cofre(position=game.at(18,1))
 	const cofre5=new Cofre(position=game.at(19,12))
+	const cofre6=new Cofre(position=game.at(11,7))
+	const cofre7=new Cofre(position=game.at(14,1))
+	const cofre8=new Cofre(position=game.at(19,4))
+	const cofre9=new Cofre(position=game.at(4,10))
 	
-	//power ups
-	const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
-	const monedaOro = new MonedaDeOro(position = game.at(4, 7))
-	const monedaPlata = new MonedaDePlata(position = game.at(18, 2))
-
 	//escenario
 	habitacion.crear(6,6,game.at(0,6))
 	habitacion.crear(6,6,game.at(7,6))
@@ -52,6 +57,10 @@ object nivel1 {
  	game.addVisual(cofre3)
  	game.addVisual(cofre4)
  	game.addVisual(cofre5)
+ 	game.addVisual(cofre6)
+ 	game.addVisual(cofre7)
+ 	game.addVisual(cofre8)
+ 	game.addVisual(cofre9)
  	
 	game.addVisual(agujero1)
 	game.addVisual(agujero2)
@@ -63,9 +72,9 @@ object nivel1 {
 	game.addVisual(animator.crearObjetoAnimado(babosa3))
 	game.addVisual(animator.crearObjetoAnimado(babosa4))
 	
-	game.addVisual(animator.crearObjetoAnimado(monedaBronze))
-	game.addVisual(animator.crearObjetoAnimado(monedaOro))
-	game.addVisual(animator.crearObjetoAnimado(monedaPlata))
+//	game.addVisual(animator.crearObjetoAnimado(monedaBronze))
+//	game.addVisual(animator.crearObjetoAnimado(monedaOro))
+//	game.addVisual(animator.crearObjetoAnimado(monedaPlata))
 	
 	game.addVisual(aberturas.crearPuerta(cerrada, game.at(1, 6)))
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(16, 6)))
@@ -79,7 +88,9 @@ object nivel1 {
 	generadorDeTrampas.agregarTrampas()
 	
 	cofre.contener(new Llave(position=cofre.position()))
-//	cofre.contener(new MonedaDePlata(position = cofre.position()))
+	cofre2.contener(animator.crearObjetoAnimado(monedaOro))
+	cofre3.contener(animator.crearObjetoAnimado(monedaPlata))
+	cofre4.contener(animator.crearObjetoAnimado(monedaBronze))
 	
 	atributos.vidaInicial()
 	

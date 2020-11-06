@@ -22,9 +22,6 @@ class Trampa {
     method animacion(){
   	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
     	
- //  method detenerAnimacion(){
- //   	game.removeTickEvent("ANIMACION")
- //  }
     
     method cambiarImagen(){
     	pinches.cambiarEstado(self)
@@ -73,18 +70,6 @@ object activados{
 }
 
 
-
-
-
-
-
-
-/*object fabricaDeTrampas {
-	
-	method generarTrampa() {
-		return (new Trampa(position=randomizer.emptyPosition()))
-	}
-}*/
 
 object generadorDeTrampas { 
 	var cantDeTrampas=0

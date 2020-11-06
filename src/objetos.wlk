@@ -10,7 +10,6 @@ class Moneda {
 	var property position = game.at(10, 9)
 	var indexImg = 0
 	method action() {		
-		game.removeVisual(self)
 		atributos.monedaRecolectada(self)
 	}	
 	method image() 
@@ -24,13 +23,11 @@ class MonedaDeOro inherits Moneda {
 	override method image() = "Gold_2"+ indexImg.toString() + ".png"
 	override method action(){ 
 		super()
+		game.say(caballero,"Ahora podre evitar los pozos")
 		caballero.formaDeCaer(powerUpAgujero)
 		powerUpAgujero.moneda(self)
 	}
 	
-	method ubicar(){
-		game.addVisualIn(self,game.at(15,13))
-	}
 	
 }
 
@@ -38,13 +35,10 @@ class MonedaDePlata inherits Moneda {
 	override method image() = "Silver_2"+ indexImg.toString() + ".png"
 	override method action(){ 
 		super()
+		game.say(caballero,"Ahora podre evitar las trampas")
 		caballero.formaDePincharse(powerUpPinches)
 		powerUpPinches.moneda(self)
-			}
-	
-	method ubicar(){
-		game.addVisualIn(self,game.at(17,13))
-	}		
+			}	
 
 }
 
@@ -52,12 +46,9 @@ class MonedaDeBronze inherits Moneda {
 	override method image() = "Bronze_2"+ indexImg.toString() + ".png"
 	override method action(){ 
 		super()
+		game.say(caballero,"Ahora podre evitar las babosas")
 		caballero.formaDeRecibirDanio(powerUpDanio)
 		powerUpDanio.moneda(self)
-	}
-	
-	method ubicar(){
-		game.addVisualIn(self,game.at(19,13))
 	}
 	
 }
@@ -77,7 +68,7 @@ object animator {
 	
 }
 
-
+//puertas
 
 class Puerta {
 	var property estado = cerrada
@@ -134,36 +125,39 @@ object aberturas {
 	
 }
 
+//cofres
 class Cofre{
 	var property position
 	var property imagenes=["cofre.png","cofre_abierto.png"]
 	var property image=imagenes.first()
-	const contenedor=[]
+	var contenedor=[]
 	
 	method cambiarImagen(){
 		image=imagenes.last()
 	}
 	method action(){
 		self.cambiarImagen()
-		if(self.contieneLlave())
-			game.addVisualIn(contenedor.first(),caballero.position())
+		if(self.contieneAlgo()){
+			game.addVisualIn(contenedor.first(),self.position())
+			contenedor=[]}
 	}
-	method contieneLlave(){
+	method contieneAlgo(){
 		return contenedor.size()>0
 	}
 	method colisiono(personaje){
 	}
 	method voyAColisionar(personaje){  }
-	method contener(unaLlave){
-		contenedor.add(unaLlave)
+	method contener(algo){
+		contenedor.add(algo)
 	}
 }
-
+//llave
 class Llave{
 	var property position
 	method image()="llaveprueba-2.png"
 	
 	method action(){
+		game.say(caballero,"Si!, puedo escapar")
 		game.removeVisual(self)
 		caballero.gane()
 	}
