@@ -74,13 +74,24 @@ object caballero {
 		atributos.disminuirVida(self)	
 		if (nivelDeVida == 0) self.perder() 
 	}
-	method caerEnAgujero(){
 	
+	method caerEnAgujero(){
+		
+		
 		if (formaDeCaer == caer){
+		self.validarCantidadTrampas()
 		game.removeTickEvent("verificar si estoy en pinche")
-		game.removeTickEvent("NUEVA TRAMPA")
+		//game.removeTickEvent("NUEVA TRAMPA")
+		 
 		game.removeVisual(self);
 		self.finalizarJuego()
+		}
+	}
+	
+	
+	method validarCantidadTrampas(){
+		if ( generadorDeTrampas.cantDeTrampas() != 7){
+			game.removeTickEvent("NUEVA TRAMPA")
 		}
 	}
 	

@@ -72,15 +72,15 @@ object activados{
 
 
 object generadorDeTrampas { 
-	var cantDeTrampas=0
+	var property cantDeTrampas=0
 	method nuevaTrampa() {
 		
 		const trampita = new Trampa(position=randomizer.emptyPosition())
 			game.addVisual(trampita)
-
 			cantDeTrampas+=1
-			game.removeVisual(caballero)
-			game.addVisual(caballero)
+			self.validarCaballero()
+			//game.removeVisual(caballero)
+			//game.addVisual(caballero)
 			trampita.animacion()
 			if(cantDeTrampas==7)game.removeTickEvent("NUEVA TRAMPA")
 	}
@@ -89,9 +89,14 @@ object generadorDeTrampas {
 	game.onTick(5000, "NUEVA TRAMPA", { self.nuevaTrampa() })
 	}
 	
-}   
+	method validarCaballero(){
+		if (game.hasVisual(caballero)){
+			game.removeVisual(caballero)
+			game.addVisual(caballero)
+		}
+	}
 
-
+}
 
 
 class Agujero{
