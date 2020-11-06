@@ -172,6 +172,7 @@ object perderVida {
 object caer {
 	method sacarVida(personaje){
 		personaje.caerEnAgujero()
+		personaje.formaDeCaer(caer)
 	}
 }
 
