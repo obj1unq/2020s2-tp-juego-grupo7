@@ -72,17 +72,10 @@ object caballero {
 		
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
-		if (nivelDeVida == 0) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
+		if (nivelDeVida == 0) self.perder() 
 	}
-	
-//	method caerEnAgujero(){
-//		if (self.tengoMonedas()){
-//			monedas.forEach({moneda => moneda.caerEnAgujero(self)})
-//		}
-//		else {game.removeVisual(self); self.finalizarJuego()}
-//	}
-
 	method caerEnAgujero(){
+	
 		if (formaDeCaer == caer){
 		game.removeTickEvent("verificar si estoy en pinche")
 		game.removeTickEvent("NUEVA TRAMPA")
@@ -91,14 +84,6 @@ object caballero {
 		}
 	}
 	
-/* 	method perderVida(){
-		if (not vida == 0){
-			vida = vida - vida.max(0)
-		}else{
-			self.perder()
-		}
-	}
-*/	
 	method irASiEsPosible(nuevaPosicion) {
 		self.cambiarDireccion(nuevaPosicion)
 		const objetosNuevaPosicion = game.getObjectsIn(nuevaPosicion) 
@@ -165,6 +150,7 @@ object perderVida {
 	var property moneda
 	method sacarVida(personaje){
 		personaje.sacarVida()
+		game.say(caballero,"Ouch! me quedan "+caballero.nivelDeVida().toString()+" vidas")
 	}
 	
 }
