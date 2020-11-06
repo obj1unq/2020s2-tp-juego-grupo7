@@ -8,7 +8,7 @@ object caballero {
 	var property position = game.at(0,0)
 	var property direccion = derecha
 //	const monedas =[]
-	var property nivelDeVida = 3
+	var property nivelDeVida = 6
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
 	var property formaDeCaer = caer
@@ -72,7 +72,7 @@ object caballero {
 		
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
-		if (nivelDeVida == 1) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
+		if (nivelDeVida == 0) self.perder() //else game.say(self, "Te queda " + nivelDeVida.toString() + " vida") 
 	}
 	
 //	method caerEnAgujero(){

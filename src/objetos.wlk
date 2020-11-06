@@ -28,6 +28,10 @@ class MonedaDeOro inherits Moneda {
 		powerUpAgujero.moneda(self)
 	}
 	
+	method ubicar(){
+		game.addVisualIn(self,game.at(15,13))
+	}
+	
 }
 
 class MonedaDePlata inherits Moneda {
@@ -36,7 +40,11 @@ class MonedaDePlata inherits Moneda {
 		super()
 		caballero.formaDePincharse(powerUpPinches)
 		powerUpPinches.moneda(self)
-			}		
+			}
+	
+	method ubicar(){
+		game.addVisualIn(self,game.at(17,13))
+	}		
 
 }
 
@@ -46,6 +54,10 @@ class MonedaDeBronze inherits Moneda {
 		super()
 		caballero.formaDeRecibirDanio(powerUpDanio)
 		powerUpDanio.moneda(self)
+	}
+	
+	method ubicar(){
+		game.addVisualIn(self,game.at(19,13))
 	}
 	
 }
