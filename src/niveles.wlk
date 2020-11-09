@@ -42,6 +42,8 @@ object nivel1 {
 	const cofre8=new Cofre(position=game.at(19,4))
 	const cofre9=new Cofre(position=game.at(4,10))
 	
+
+	
 	//escenario
 	habitacion.crear(6,6,game.at(0,6))
 	habitacion.crear(6,6,game.at(7,6))
@@ -50,6 +52,7 @@ object nivel1 {
 	habitacion.crearParedHorizontal(10, game.at(0,1))
  	habitacion.crearParedVertical(3, game.at(2,7))
  	habitacion.crearParedHorizontal(20,game.at(0,13))
+ 	
  	
  	//visuales
  	game.addVisual(cofre)
@@ -84,7 +87,6 @@ object nivel1 {
 	game.addVisual(new Palanca(position = game.at(0,12)))
 	game.addVisual(new Palanca(position = game.at(8,7)))
 	
-	//game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	generadorDeTrampas.agregarTrampas()
 	
 	cofre.contener(new Llave(position=cofre.position()))
@@ -99,6 +101,7 @@ object nivel1 {
 	config.configurarColisiones()
 	config.configurarTeclas()
 	config.configurarAnimaciones()
+
 	
 	
 	game.onTick(500, "enemigo", { babosa.mover()})

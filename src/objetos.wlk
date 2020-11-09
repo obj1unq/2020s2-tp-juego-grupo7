@@ -136,6 +136,7 @@ class Cofre{
 		image=imagenes.last()
 	}
 	method action(){
+		game.sound("cofre.mp3")
 		self.cambiarImagen()
 		if(self.contieneAlgo()){
 			game.addVisualIn(contenedor.first(),self.position())

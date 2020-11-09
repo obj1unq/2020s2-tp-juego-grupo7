@@ -61,7 +61,7 @@ object atributos{
 	const vidaImg=["corazon0.png","corazon1.png","corazon2.png"]
 	var property image="corazon3.png"
 	const property position=game.at(2,13)
-	var iniMonedas=game.at(20,13)
+	var iniMonedas=game.at(20,12)
 	
 	method monedaRecolectada(unaMoneda){
 		game.removeVisual(unaMoneda)
@@ -81,5 +81,4 @@ object atributos{
 		self.vidaInicial()
 	}
 }
-
 
