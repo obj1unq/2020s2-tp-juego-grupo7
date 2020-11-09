@@ -7,8 +7,7 @@ program game {
 			
 	nivel1.iniciarEscenario()
 	sonidos.musicaFondo().shouldLoop(true)
-	game.schedule(3000, {sonidos.musicaFondo().play()})
-	
+	game.schedule(3000, {sonidos.musicaFondo().play()})	
 	
 	game.start()
 
