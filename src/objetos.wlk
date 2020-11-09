@@ -9,9 +9,12 @@ class Moneda {
 
 	var property position = game.at(10, 9)
 	var indexImg = 0
+	var property sound=game.sound("moneda.wav")
+	
 	method action() {		
 		atributos.monedaRecolectada(self)
-
+		sonidos.sonar(sound)
+		self.sound(game.sound("moneda.wav"))
 	}	
 	method image() 
 	method colisiono(personaje){ }
@@ -97,9 +100,14 @@ object abierta {
 
 class Palanca {
 	var property estado = 0
-	var property position	
+	var property position
+	var property sound=game.sound("puerta.wav")	
 	method image() = "palanca_" + estado + ".png" 
-	method action() {self.cambiarEstadoPuertas()}
+	method action() {
+		self.cambiarEstadoPuertas()
+		sonidos.sonar(sound)
+		self.sound(game.sound("puerta.wav"))
+	}
 	method voyAColisionar(personaje){ personaje.position(position) }
 	method colisiono(personaje){  }
 	method cambiarEstadoPuertas() {
@@ -129,14 +137,16 @@ object aberturas {
 //cofres
 class Cofre{
 	var property position
-	var property imagenes=["cofre.png","cofre_abierto.png"]
-	var property image=imagenes.first()
+//(	var property imagenes=["cofre.png","cofre_abierto.png"]
 	var contenedor=[]
+	var property estado= cofreCerrado
+	var property image=estado.image()
 	
 	method cambiarImagen(){
-		image=imagenes.last()
+		image=estado.image()
 	}
 	method action(){
+		estado.action(self)
 		self.cambiarImagen()
 		if(self.contieneAlgo()){
 			game.addVisualIn(contenedor.first(),self.position())
@@ -152,6 +162,26 @@ class Cofre{
 		contenedor.add(algo)
 	}
 }
+
+object cofreAbierto{ 
+	const property image = "cofre_abierto.png"
+
+	method action(cofre){
+		cofre.estado(cofreCerrado)
+
+	}
+}
+object cofreCerrado{
+	const property image="cofre.png"
+	var property sound=game.sound("cofre.mp3")
+	method action(cofre){
+		sonidos.sonar(self.sound())
+		cofre.estado(cofreAbierto)
+		self.sound(game.sound("cofre.mp3"))
+	}
+}
+
+
 //llave
 class Llave{
 	var property position
