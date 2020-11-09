@@ -6,7 +6,7 @@ object sonidos {
 	method sonar(unSonido){
 		self.musicaFondo().pause()
 		unSonido.play()
-		game.schedule(1000, {unSonido.stop()})
+//		game.schedule(3000, {unSonido.stop()})
 		self.musicaFondo().resume()
 	}
 }

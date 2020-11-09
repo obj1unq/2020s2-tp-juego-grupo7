@@ -2,18 +2,20 @@ import wollok.game.*
 import enemigos.*
 import trampas.*
 import escenarios.*
+import sounds.*
 
 object caballero {
 	var indexImg = 0
 	var property position = game.at(0,0)
 	var property direccion = derecha
-//	const monedas =[]
 	var property nivelDeVida = 3
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
 	var property formaDeCaer = caer
-
-	method image() {
+	var property soundPerder=game.sound("perder.mp3")
+	var property soundDanio=game.sound("danio.mp3")
+	
+	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
 	}
 	
@@ -22,6 +24,8 @@ object caballero {
 	}
 	
 	method pinchate(){
+		sonidos.sonar(soundDanio)
+		soundDanio=game.sound("danio.mp3")
 		formaDePincharse.sacarVida(self)
 	}
 	
@@ -48,10 +52,10 @@ object caballero {
 
 	
 	method sacarVida(){	
-		
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
-		if (nivelDeVida == 0) self.perder() 
+		if (nivelDeVida == 0) 
+		self.perder() 
 	}
 	
 	method caerEnAgujero(){
@@ -62,7 +66,8 @@ object caballero {
 		game.removeTickEvent("verificar si estoy en pinche")
 		 
 		game.removeVisual(self);
-		self.finalizarJuego()
+
+		self.perder()
 		}
 	}
 	
@@ -118,7 +123,10 @@ object caballero {
 	
 	
 	method perder() {
-		game.say(self, "PERDI INSSSSTA")
+		sonidos.sonar(soundPerder)
+		soundPerder=game.sound("perder.mp3")
+		if(game.hasVisual(self)){game.say(self, "PERDI INSSSSTA")}
+		self.image("caballerodead.png")
 		self.finalizarJuego()
 	}
 		
@@ -128,7 +136,7 @@ object caballero {
 	}
 
 	method finalizarJuego() {
-		game.schedule(3000, { game.stop() })
+		game.schedule(5000, { game.stop() })
 	}
 	
 
@@ -136,6 +144,8 @@ object caballero {
 
 
 object perderVida {
+	
+	
 	var property moneda
 	method sacarVida(personaje){
 		personaje.sacarVida()
