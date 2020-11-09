@@ -2,13 +2,14 @@ import wollok.game.*
 import caballero.*
 import objetos.*
 import enemigos.*
+import escenarios.*
 
 
 object config {
 	
 	method configurarAnimaciones(){
 		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
-		
+		game.onTick(1000, "RELOJ", {reloj.sumarSegundo()})
 	}
 		
 	method configurarTeclas() {

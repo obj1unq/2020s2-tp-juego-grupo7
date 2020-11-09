@@ -82,7 +82,12 @@ object nivel1 {
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
 	
 	game.addVisual(new Palanca(position = game.at(0,12)))
-	game.addVisual(new Palanca(position = game.at(8,7)))
+	game.addVisual(indicador)
+	game.addVisual(segundosUnidad)
+	game.addVisual(segundosDecena)
+	game.addVisual(minutosUnidad)
+	game.addVisual(minutosDecena)
+	game.addVisual(separadorReloj)
 	
 	//game.onTick(5000, "NUEVA TRAMPA", { generadorDeTrampas.nuevaTrampa() })
 	generadorDeTrampas.agregarTrampas()

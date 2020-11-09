@@ -69,6 +69,7 @@ object atributos{
 		iniMonedas=unaMoneda.position()	
 		game.addVisual(unaMoneda)		
 	}
+	
 	method monedaPerdida(unaMoneda){
 		game.removeVisual(unaMoneda)}
 		
@@ -82,4 +83,81 @@ object atributos{
 	}
 }
 
+object indicador {
+	
+	method image() = "Contador de Vidas.png"
+	method position() = game.at(1,13)
+}
+
+object reloj {
+	var cronometro = 0
+
+	method sumarSegundo(){
+		cronometro ++
+		segundo.descomponer(cronometro)
+		minuto.descomponer(cronometro)
+	}
+}
+
+
+class Tiempo {
+	var property unidad = 0
+	var property decena = 0
+	
+	method descomponer(cronometro) {
+		const temp = self.convertirNumero(cronometro)
+		unidad = temp % 10
+		decena = (temp - unidad) / 10	
+	}
+	
+	method convertirNumero(cronometro) 
+	
+}
+
+object segundo inherits Tiempo {
+	override method convertirNumero(cronometro){
+		return cronometro % 60
+	}
+}
+
+object minuto inherits Tiempo {
+	override method convertirNumero(cronometro){
+		return (cronometro - segundo.unidad() - segundo.decena()*10) / 60
+	}
+}
+
+
+
+object segundosUnidad {
+	
+	method image() = segundo.unidad().toString() + ".png"
+	method position() = game.at(11,13)
+	
+}
+
+object segundosDecena {
+	
+	method image() = segundo.decena().toString() + ".png"
+	method position() = game.at(10,13)
+	
+}
+
+object minutosUnidad {
+	
+	method image() = minuto.unidad().toString() + ".png"
+	method position() = game.at(9,13)
+	
+}
+
+object minutosDecena {
+	
+	method image() = minuto.decena().toString() + ".png"
+	method position() = game.at(8,13)
+	
+}
+
+object separadorReloj {
+	method image() = "separadorReloj.png"
+	method position() = game.at(9,13)
+}
 
