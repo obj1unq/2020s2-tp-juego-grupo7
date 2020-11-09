@@ -12,6 +12,7 @@ object nivel1 {
 	game.height(14)
 	game.width(20)
 	game.ground("suelo.png")
+
 	
 	//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
