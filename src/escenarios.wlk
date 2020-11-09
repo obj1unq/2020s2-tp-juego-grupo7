@@ -83,17 +83,13 @@ object atributos{
 	}
 }
 
-object indicador {
-	
-	method image() = "Contador de Vidas.png"
-	method position() = game.at(1,13)
-}
+
 
 object reloj {
-	var cronometro = 0
+	var property cronometro = 0
 
 	method sumarSegundo(){
-		cronometro ++
+		cronometro = 0.max(cronometro - 1)
 		segundo.descomponer(cronometro)
 		minuto.descomponer(cronometro)
 	}
@@ -156,8 +152,23 @@ object minutosDecena {
 	
 }
 
+
+object setTimer {
+	
+	method configurar(tiempo) {
+		reloj.cronometro(tiempo)
+		game.schedule(tiempo*1000, {caballero.perder()})
+	}
+	
+}
+
 object separadorReloj {
 	method image() = "separadorReloj.png"
 	method position() = game.at(9,13)
 }
 
+object indicador {
+	
+	method image() = "Contador de Vidas.png"
+	method position() = game.at(1,13)
+}
