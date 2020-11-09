@@ -2,7 +2,7 @@ import wollok.game.*
 import caballero.*
 import enemigos.*
 import escenarios.*
-
+import sounds.*
 // MONEDAS
 
 class Moneda {
@@ -11,6 +11,10 @@ class Moneda {
 	var indexImg = 0
 	method action() {		
 		atributos.monedaRecolectada(self)
+		sonidos.musicaFondo().pause()
+		sonidos.moneda().play()
+		sonidos.moneda().stop()
+		sonidos.musicaFondo().resume()
 	}	
 	method image() 
 	method colisiono(personaje){ }
@@ -102,6 +106,7 @@ class Palanca {
 	method voyAColisionar(personaje){ personaje.position(position) }
 	method colisiono(personaje){  }
 	method cambiarEstadoPuertas() {
+		sonidos.puerta().play()
 		aberturas.cambiarEstadoPuertas()
 		estado = (estado+1) % 2
 	}
@@ -136,7 +141,10 @@ class Cofre{
 		image=imagenes.last()
 	}
 	method action(){
-		game.sound("cofre.mp3")
+		sonidos.musicaFondo().pause()
+		sonidos.cofre().play()
+		sonidos.cofre().pause()
+		sonidos.musicaFondo().resume()
 		self.cambiarImagen()
 		if(self.contieneAlgo()){
 			game.addVisualIn(contenedor.first(),self.position())
