@@ -5,6 +5,7 @@ import enemigos.*
 import objetos.*
 import trampas.*
 import caballero.*
+import sounds.*
 
 object nivel1 {
 	
@@ -12,7 +13,9 @@ object nivel1 {
 	game.height(14)
 	game.width(20)
 	game.ground("suelo.png")
-
+	
+	sonidos.musicaFondo().shouldLoop(true)
+	game.schedule(3000, {sonidos.musicaFondo().play()})	
 	
 	//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
