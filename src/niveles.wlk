@@ -111,7 +111,7 @@ object nivel1 {
 	config.configurarTeclas()
 	config.configurarAnimaciones()
 
-	setTimer.configurar(20)
+	setTimer.configurar(90)
 	
 	game.onTick(500, "enemigo", { babosa.mover()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
