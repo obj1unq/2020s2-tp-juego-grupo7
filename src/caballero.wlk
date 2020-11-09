@@ -21,19 +21,6 @@ object caballero {
 		indexImg = (indexImg+1) % 4	
 	}
 	
-	//method agregarMoneda(moneda){
-	//	monedas.add(moneda)	
-	//}
-	
-	//method tengoMonedas() {
-	//	return monedas.size() > 0
-	//}
-	
-	//method perderMoneda(moneda){
-
-	//	atributos.monedaPerdida(moneda)	
-	//}
-	
 	method pinchate(){
 		formaDePincharse.sacarVida(self)
 	}
@@ -58,15 +45,7 @@ object caballero {
 		}
 	}
 			
-		
-	
-//	method sacarVida() {
-//		if (self.tengoMonedas()){
-//			monedas.forEach({moneda => moneda.sacarVida(self)})
-//		}
-//		else {self.sacarVidaOPerder()}
-//	}
-//	
+
 	
 	method sacarVida(){	
 		
@@ -81,7 +60,6 @@ object caballero {
 		if (formaDeCaer == caer){
 		self.validarCantidadTrampas()
 		game.removeTickEvent("verificar si estoy en pinche")
-		//game.removeTickEvent("NUEVA TRAMPA")
 		 
 		game.removeVisual(self);
 		self.finalizarJuego()
