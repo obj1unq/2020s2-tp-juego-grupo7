@@ -126,7 +126,6 @@ object caballero {
 		sonidos.sonar(soundPerder)
 		soundPerder=game.sound("perder.mp3")
 		if(game.hasVisual(self)){game.say(self, "PERDI INSSSSTA")}
-		self.image("caballerodead.png")
 		self.finalizarJuego()
 	}
 		
