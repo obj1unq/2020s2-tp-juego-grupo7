@@ -3,6 +3,7 @@ import caballero.*
 import objetos.*
 import enemigos.*
 import escenarios.*
+import menu.*
 
 
 object config {
@@ -25,10 +26,15 @@ object config {
 			
 	}
 
-	
 	method configurarColisiones() {
 		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
 		})
+		}
+	method configurarTeclasMenu(){
+		keyboard.down().onPressDo({cursor.mover(cursor.position().down(2))})
+		keyboard.up().onPressDo({cursor.mover(cursor.position().up(2))})
+		keyboard.enter().onPressDo({cursor.start()})
+	}
 	}
 
-}
+

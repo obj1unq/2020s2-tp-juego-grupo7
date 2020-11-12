@@ -3,6 +3,8 @@ import enemigos.*
 import trampas.*
 import escenarios.*
 import sounds.*
+import config.*
+import niveles.*
 
 object caballero {
 	var indexImg = 0
@@ -14,6 +16,7 @@ object caballero {
 	var property formaDeCaer = caer
 	var property soundPerder=game.sound("perder.mp3")
 	var property soundDanio=game.sound("danio.mp3")
+	
 	
 	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
@@ -130,14 +133,15 @@ object caballero {
 	}
 		
 	method gane(){
+		sonidos.nivelSuperado()
 		game.say(self, "GANE PERRO")
 		self.finalizarJuego()
 	}
 
 	method finalizarJuego() {
+		sonidos.musicaFondo().stop()
 		game.schedule(5000, { game.stop() })
 	}
-	
 
 }
 

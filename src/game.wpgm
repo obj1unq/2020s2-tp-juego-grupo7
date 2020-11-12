@@ -1,11 +1,12 @@
 import wollok.game.*
 import niveles.*
 import sounds.*
+import menu.*
 
 program game {
 	game.title("Escape ATR")
 			
-	nivel1.iniciarEscenario()
+	menu.iniciarMenu()
 
 	
 	game.start()
