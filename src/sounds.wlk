@@ -1,18 +1,44 @@
 import wollok.game.*
 
 object sonidos {
-	var property musicaFondo = game.sound("prueba1.mp3")
+	const property musicaFondo = game.sound("prueba1.mp3")
 	const property musicaMenu= game.sound("musicamenu.mp3")
-	var property sonidoGanar=game.sound("ganar.mp3")	
-	method sonar(unSonido){
+	var property soundDanio=game.sound("danio.mp3")	
+	var property soundPerder=game.sound("perder.mp3")
+	var property soundMoneda=game.sound("moneda.wav")
+	var property soundPuerta=game.sound("puerta.wav")
+	var property soundCofre=game.sound("cofre.mp3")
+	var property soundBabosa=game.sound("babosa.wav")
+	
+	
+	method play(unSonido){
 		musicaFondo.pause()
 		unSonido.play()
 		musicaFondo.resume()
 	}
-	
-	method nivelSuperado(){
-	 	musicaFondo.stop()
-	 	sonidoGanar.play()
-	 	game.schedule(4000, sonidoGanar.stop())
+	method danio(){
+		self.play(soundDanio)
+		soundDanio=game.sound("danio.mp3")	
 	}
+	method perder(){
+		self.play(soundPerder)
+		soundPerder=game.sound("perder.mp3")
+	}
+	method moneda(){
+		self.play(soundMoneda)
+		soundMoneda=game.sound("moneda.wav")
+	}
+	method puerta(){
+		self.play(soundPuerta)
+		soundPuerta=game.sound("puerta.wav")
+	}
+	method cofre(){
+		self.play(soundCofre)
+		soundCofre=game.sound("cofre.mp3")
+	}
+	method babosa(){
+		self.play(soundBabosa)
+		soundBabosa=game.sound("babosa.wav")
+	}
+	
 }

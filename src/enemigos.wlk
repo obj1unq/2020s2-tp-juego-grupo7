@@ -14,7 +14,7 @@ class Enemigo{
 	var property direccion = null
 	var property movimientosRealizados = 0
 	var property movimientosALlegar = null
-	var property sound=game.sound("babosa.wav")
+	
 	
 	method image() {
 		return "demon" + direccion.nombre()   + "_" + indexImg + ".png"
@@ -61,8 +61,7 @@ class Enemigo{
 	
 	method colisiono(personaje){
 		personaje.hacerteDanio() 
-		sonidos.sonar(sound)
-		sound=game.sound("babosa.wav")
+		sonidos.babosa()
 	}
 	
 	method voyAColisionar(personaje){

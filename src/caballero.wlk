@@ -14,9 +14,6 @@ object caballero {
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
 	var property formaDeCaer = caer
-	var property soundPerder=game.sound("perder.mp3")
-	var property soundDanio=game.sound("danio.mp3")
-	
 	
 	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
@@ -27,8 +24,7 @@ object caballero {
 	}
 	
 	method pinchate(){
-		sonidos.sonar(soundDanio)
-		soundDanio=game.sound("danio.mp3")
+		sonidos.danio()
 		formaDePincharse.sacarVida(self)
 	}
 	
@@ -126,14 +122,12 @@ object caballero {
 	
 	
 	method perder() {
-		sonidos.sonar(soundPerder)
-		soundPerder=game.sound("perder.mp3")
+		sonidos.perder()
 		if(game.hasVisual(self)){game.say(self, "PERDI INSSSSTA")}
 		self.finalizarJuego()
 	}
 		
 	method gane(){
-		sonidos.nivelSuperado()
 		game.say(self, "GANE PERRO")
 		self.finalizarJuego()
 	}
