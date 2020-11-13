@@ -39,10 +39,10 @@ object nivel1 {
 	const cofre2=new Cofre(position=game.at(11,10))
 	const cofre3=new Cofre(position=game.at(18,10))
 	const cofre4=new Cofre(position=game.at(18,1))
-	const cofre5=new Cofre(position=game.at(19,12))
+	const cofre5=new Cofre(position=game.at(18,8))
 	const cofre6=new Cofre(position=game.at(11,7))
 	const cofre7=new Cofre(position=game.at(14,1))
-	const cofre8=new Cofre(position=game.at(19,4))
+	const cofre8=new Cofre(position=game.at(2,2))
 	const cofre9=new Cofre(position=game.at(4,10))
 	
 
@@ -55,9 +55,9 @@ object nivel1 {
 	habitacion.crearParedHorizontal(10, game.at(0,1))
  	habitacion.crearParedVertical(3, game.at(2,7))
  	habitacion.crearParedHorizontal(20,game.at(0,13))
- 	
- 	
+//	habitacion.crearParedHorizontal(1,game.at(19,12))
  	//visuales
+ 	//cofres
  	game.addVisual(cofre)
  	game.addVisual(cofre2)
  	game.addVisual(cofre3)
@@ -67,40 +67,44 @@ object nivel1 {
  	game.addVisual(cofre7)
  	game.addVisual(cofre8)
  	game.addVisual(cofre9)
- 	
+ 	cofre.contener(new Llave(position=cofre.position()))
+	cofre2.contener(animator.crearObjetoAnimado(monedaOro))
+	cofre3.contener(animator.crearObjetoAnimado(monedaPlata))
+	cofre4.contener(animator.crearObjetoAnimado(monedaBronze))
+	
+ 	//pozos
 	game.addVisual(agujero1)
 	game.addVisual(agujero2)
 	game.addVisual(agujero3)
 	game.addVisual(agujero4)
 	
+	//enemigos
 	game.addVisual(animator.crearObjetoAnimado(babosa))
 	game.addVisual(animator.crearObjetoAnimado(babosa2))
 	game.addVisual(animator.crearObjetoAnimado(babosa3))
 	game.addVisual(animator.crearObjetoAnimado(babosa4))
 	
-//	game.addVisual(animator.crearObjetoAnimado(monedaBronze))
-//	game.addVisual(animator.crearObjetoAnimado(monedaOro))
-//	game.addVisual(animator.crearObjetoAnimado(monedaPlata))
-	
+	//puertas
 	game.addVisual(aberturas.crearPuerta(cerrada, game.at(1, 6)))
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(16, 6)))
 	game.addVisual(aberturas.crearPuerta(cerrada, game.at(7, 8)))
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
-	
+	game.addVisual(escalera)
+	game.addVisual(new PuertaEscape(estado=cerrada, position=game.at(19,12)))
 	game.addVisual(new Palanca(position = game.at(0,12)))
+	
+	//timer
 	game.addVisual(indicador)
 	game.addVisual(segundosUnidad)
 	game.addVisual(segundosDecena)
 	game.addVisual(minutosUnidad)
 	game.addVisual(minutosDecena)
 	game.addVisual(separadorReloj)
-	
+	//trampas
 	generadorDeTrampas.agregarTrampas()
-	
-	cofre.contener(new Llave(position=cofre.position()))
-	cofre2.contener(animator.crearObjetoAnimado(monedaOro))
-	cofre3.contener(animator.crearObjetoAnimado(monedaPlata))
-	cofre4.contener(animator.crearObjetoAnimado(monedaBronze))
+	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
+	//cofres
+
 	
 	atributos.vidaInicial()
 	
@@ -111,12 +115,12 @@ object nivel1 {
 	config.configurarAnimaciones()
 
 	setTimer.configurar(90)
-	
+	//enemigos
 	game.onTick(500, "enemigo", { babosa.mover()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
 	game.onTick(200, "enemigo", { babosa4.mover()})
-	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
+	
 	}
 		
 	}

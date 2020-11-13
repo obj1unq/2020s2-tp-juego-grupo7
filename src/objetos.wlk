@@ -79,9 +79,24 @@ class Puerta {
 	var property position = game.at(1, 6)	
 	method image() = estado.image() 
 	method action() {}
-	method colisiono(personaje) {}
+	method colisiono(personaje) {
+	}
 	method voyAColisionar(personaje){ estado.voyAColisionar(personaje, position) }
 	method cambiarEstado() { estado.cambiar(self) }
+}
+class PuertaEscape inherits Puerta{
+	override method action(){
+		self.cambiarEstado()
+	}
+	override method cambiarEstado(){
+		if(caballero.tieneLlave()){
+		estado.cambiar(self)
+		}
+		else game.say(self,"Debes conseguir llave")
+	}
+	override method colisiono(personaje){
+		caballero.gane()
+	}
 }
 
 object cerrada {
@@ -188,12 +203,20 @@ class Llave{
 	method action(){
 		game.say(caballero,"Si!, puedo escapar")
 		game.removeVisual(self)
-		caballero.gane()
+		caballero.tieneLlave(true)
 	}
 	method colisiono(personaje){ }
 
 	method voyAColisionar(personaje){ personaje.position(position) }
 
+}
+
+object escalera{
+	var property position=game.at(19,12)
+	method image()="escalera.png"
+	method action(){}
+	method colisiono(personaje){}
+	method voyAColisionar(personaje){ personaje.position(position)}
 }
 
 

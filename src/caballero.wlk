@@ -14,6 +14,7 @@ object caballero {
 	var property formaDePincharse = perderVida
 	var property formaDeRecibirDanio = perderVida
 	var property formaDeCaer = caer
+	var property tieneLlave=false
 	
 	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
@@ -135,6 +136,8 @@ object caballero {
 	method finalizarJuego() {
 		game.schedule(5000, { game.stop() })
 	}
+	
+
 
 }
 
