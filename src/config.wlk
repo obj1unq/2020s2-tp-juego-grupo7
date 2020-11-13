@@ -33,7 +33,7 @@ object config {
 	method configurarTeclasMenu(){
 		keyboard.down().onPressDo({cursor.mover(cursor.position().down(2))})
 		keyboard.up().onPressDo({cursor.mover(cursor.position().up(2))})
-		keyboard.enter().onPressDo({cursor.start()})
+		keyboard.enter().onPressDo({cursor.action()})
 	}
 	}
 

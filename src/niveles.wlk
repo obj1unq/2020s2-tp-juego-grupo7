@@ -14,8 +14,7 @@ object nivel1 {
 	game.width(20)
 	game.ground("suelo.png")
 	
-	sonidos.musicaFondo().shouldLoop(true)
-	game.schedule(3000, {sonidos.musicaFondo().play()})	
+	sonidos.musicaFondo()
 	
 	//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))

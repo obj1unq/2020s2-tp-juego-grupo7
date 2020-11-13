@@ -133,7 +133,6 @@ object caballero {
 	}
 
 	method finalizarJuego() {
-		sonidos.musicaFondo().stop()
 		game.schedule(5000, { game.stop() })
 	}
 
