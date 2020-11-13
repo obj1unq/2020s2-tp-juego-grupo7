@@ -9,12 +9,11 @@ class Moneda {
 
 	var property position = game.at(10, 9)
 	var indexImg = 0
-	var property sound=game.sound("moneda.wav")
+
 	
 	method action() {		
 		atributos.monedaRecolectada(self)
 		sonidos.moneda()
-		self.sound(game.sound("moneda.wav"))
 	}	
 	method image() 
 	method colisiono(personaje){ }
@@ -84,18 +83,22 @@ class Puerta {
 	method voyAColisionar(personaje){ estado.voyAColisionar(personaje, position) }
 	method cambiarEstado() { estado.cambiar(self) }
 }
+
 class PuertaEscape inherits Puerta{
 	override method action(){
 		self.cambiarEstado()
 	}
 	override method cambiarEstado(){
 		if(caballero.tieneLlave()){
-		estado.cambiar(self)
+		   estado.cambiar(self)
+		   escalera.oculta(false)
+		   
 		}
 		else game.say(self,"Debes conseguir llave")
 	}
 	override method colisiono(personaje){
-		caballero.gane()
+		sonidos.nivelSuperado()
+		personaje.gane()
 	}
 }
 
@@ -201,6 +204,7 @@ class Llave{
 	method image()="llaveprueba-2.png"
 	
 	method action(){
+		sonidos.llave()
 		game.say(caballero,"Si!, puedo escapar")
 		game.removeVisual(self)
 		caballero.tieneLlave(true)
@@ -213,10 +217,13 @@ class Llave{
 
 object escalera{
 	var property position=game.at(19,12)
+	var property oculta=true
 	method image()="escalera.png"
 	method action(){}
 	method colisiono(personaje){}
-	method voyAColisionar(personaje){ personaje.position(position)}
+	method voyAColisionar(personaje){ 
+		if(not oculta){personaje.position(position)}
+	}
 }
 
 

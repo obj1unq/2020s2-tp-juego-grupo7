@@ -14,7 +14,6 @@ object nivel1 {
 	game.width(20)
 	game.ground("suelo.png")
 	
-	sonidos.musicaFondo()
 	
 	//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
@@ -101,13 +100,12 @@ object nivel1 {
 	game.addVisual(minutosDecena)
 	game.addVisual(separadorReloj)
 	//trampas
-	generadorDeTrampas.agregarTrampas()
-	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
+
 	//cofres
 
 	
 	atributos.vidaInicial()
-	
+	//seteos iniciales
 	game.addVisual(animator.crearObjetoAnimado(caballero))
 	
 	config.configurarColisiones()
@@ -115,15 +113,17 @@ object nivel1 {
 	config.configurarAnimaciones()
 
 	setTimer.configurar(90)
-	//enemigos
 	game.onTick(500, "enemigo", { babosa.mover()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
 	game.onTick(200, "enemigo", { babosa4.mover()})
 	
+	sonidos.musicaFondo()
+	generadorDeTrampas.agregarTrampas()
+	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
 	}
 		
-	}
+}
 	
 	
 
