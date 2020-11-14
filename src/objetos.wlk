@@ -201,7 +201,7 @@ object cofreCerrado{
 //llave
 class Llave{
 	var property position
-	method image()="llaveprueba-2.png"
+	method image()="llave.png"
 	
 	method action(){
 		sonidos.llave()
@@ -226,6 +226,18 @@ object escalera{
 	}
 }
 
+class Antorcha{
+	const property position
+	var indexImg=0
+	
+	method image(){
+		return "antorcha"+ indexImg.toString() + ".png"
+	}
+	method cambiarImagen() {
+		indexImg = (indexImg+1) % 4
+	}
+	
+}
 
 
 

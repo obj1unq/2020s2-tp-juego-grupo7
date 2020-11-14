@@ -3,6 +3,7 @@ import wollok.game.*
 import config.*
 import niveles.*
 import sounds.*
+import objetos.*
 
 object menu {
 	const property optionMenu=[start,setup,exit]
@@ -20,14 +21,22 @@ object menu {
  	habitacion.crearParedHorizontal(game.width()-1,game.origin().right(1))
  	habitacion.crearParedVertical(game.height()-1, game.at(19,1))
  	habitacion.crearParedHorizontal(game.width()-1,game.at(0,13))
+ 	const antorcha=new Antorcha(position=game.at(19,12))
+ 	const antorcha1=new Antorcha(position=game.at(19,1))
+ 	const antorcha2=new Antorcha(position=game.at(0,1))
+ 	const antorcha3=new Antorcha(position=game.at(0,12))
 	game.addVisual(start)
 	game.addVisual(setup)
 	game.addVisual(exit)
 	game.addVisual(cursor)
-	game.addVisual(new Banderin(position=game.at(0,12)))
-	game.addVisual(new Banderin(position=game.at(19,12)))
-	game.addVisual(new Banderin(position=game.at(0,2)))
-	game.addVisual(new Banderin(position=game.at(19,2)))			
+	game.addVisual(animator.crearObjetoAnimado(antorcha))
+	game.addVisual(animator.crearObjetoAnimado(antorcha1))
+	game.addVisual(animator.crearObjetoAnimado(antorcha2))
+	game.addVisual(animator.crearObjetoAnimado(antorcha3))
+	game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
+//	game.addVisual(new Banderin(position=game.at(19,12)))
+//	game.addVisual(new Banderin(position=game.at(0,2)))
+//	game.addVisual(new Banderin(position=game.at(19,2)))			
 	}
 }
 

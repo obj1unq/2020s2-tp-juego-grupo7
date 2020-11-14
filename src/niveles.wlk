@@ -43,7 +43,11 @@ object nivel1 {
 	const cofre7=new Cofre(position=game.at(14,1))
 	const cofre8=new Cofre(position=game.at(2,2))
 	const cofre9=new Cofre(position=game.at(4,10))
-	
+	//antorchas 
+	const antorcha=new Antorcha(position=game.at(2,6))
+ 	const antorcha1=new Antorcha(position=game.at(17,6))
+ 	const antorcha2=new Antorcha(position=game.at(13,1))
+ 	const antorcha3=new Antorcha(position=game.at(7,7))
 
 	
 	//escenario
@@ -54,7 +58,6 @@ object nivel1 {
 	habitacion.crearParedHorizontal(10, game.at(0,1))
  	habitacion.crearParedVertical(3, game.at(2,7))
  	habitacion.crearParedHorizontal(20,game.at(0,13))
-//	habitacion.crearParedHorizontal(1,game.at(19,12))
  	//visuales
  	//cofres
  	game.addVisual(cofre)
@@ -99,9 +102,12 @@ object nivel1 {
 	game.addVisual(minutosUnidad)
 	game.addVisual(minutosDecena)
 	game.addVisual(separadorReloj)
-	//trampas
 
-	//cofres
+	//antorchas
+	game.addVisual(animator.crearObjetoAnimado(antorcha))
+	game.addVisual(animator.crearObjetoAnimado(antorcha1))
+	game.addVisual(animator.crearObjetoAnimado(antorcha2))
+	game.addVisual(animator.crearObjetoAnimado(antorcha3))
 
 	
 	atributos.vidaInicial()
