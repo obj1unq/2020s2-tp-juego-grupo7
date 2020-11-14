@@ -90,6 +90,7 @@ class PuertaEscape inherits Puerta{
 	}
 	override method cambiarEstado(){
 		if(caballero.tieneLlave()){
+		   sonidos.puerta()	
 		   estado.cambiar(self)
 		   escalera.oculta(false)
 		   
@@ -97,7 +98,6 @@ class PuertaEscape inherits Puerta{
 		else game.say(self,"Debes conseguir llave")
 	}
 	override method colisiono(personaje){
-		sonidos.nivelSuperado()
 		personaje.gane()
 	}
 }
@@ -201,8 +201,14 @@ object cofreCerrado{
 //llave
 class Llave{
 	var property position
-	method image()="llave.png"
-	
+	var indexImg=0
+
+	method image(){
+		return "llave"+ indexImg.toString() + ".png"
+	}
+	method cambiarImagen() {
+		indexImg = (indexImg+1) % 4
+	}
 	method action(){
 		sonidos.llave()
 		game.say(caballero,"Si!, puedo escapar")
@@ -236,7 +242,8 @@ class Antorcha{
 	method cambiarImagen() {
 		indexImg = (indexImg+1) % 4
 	}
-	
+	method colisiono(personaje){}
+	method voyAColisionar(personaje){}
 }
 
 

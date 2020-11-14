@@ -129,6 +129,7 @@ object caballero {
 	}
 		
 	method gane(){
+		sonidos.nivelSuperado()
 		game.say(self, "GANE PERRO")
 		game.removeTickEvent("verificar si estoy en pinche")
 		game.schedule(4000,game.removeVisual(self))

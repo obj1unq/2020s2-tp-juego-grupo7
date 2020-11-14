@@ -8,14 +8,7 @@ import caballero.*
 import sounds.*
 
 object nivel1 {
-	
-	method iniciarEscenario(){
-	game.height(14)
-	game.width(20)
-	game.ground("suelo.png")
-	
-	
-	//trampas
+		//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
 	const agujero2 = new Agujero(position = game.at(8,3))
 	const agujero3 = new Agujero(position = game.at(15,4))
@@ -46,8 +39,15 @@ object nivel1 {
 	//antorchas 
 	const antorcha=new Antorcha(position=game.at(2,6))
  	const antorcha1=new Antorcha(position=game.at(17,6))
- 	const antorcha2=new Antorcha(position=game.at(13,1))
+ 	const antorcha2=new Antorcha(position=game.at(9,1))
  	const antorcha3=new Antorcha(position=game.at(7,7))
+	
+	method iniciarEscenario(){
+	game.height(14)
+	game.width(20)
+	game.ground("suelo.png")
+	
+	
 
 	
 	//escenario
@@ -69,7 +69,7 @@ object nivel1 {
  	game.addVisual(cofre7)
  	game.addVisual(cofre8)
  	game.addVisual(cofre9)
- 	cofre.contener(new Llave(position=cofre.position()))
+ 	cofre.contener(animator.crearObjetoAnimado(new Llave(position=cofre.position())))
 	cofre2.contener(animator.crearObjetoAnimado(monedaOro))
 	cofre3.contener(animator.crearObjetoAnimado(monedaPlata))
 	cofre4.contener(animator.crearObjetoAnimado(monedaBronze))
@@ -92,8 +92,10 @@ object nivel1 {
 	game.addVisual(aberturas.crearPuerta(cerrada, game.at(7, 8)))
 	game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
 	game.addVisual(escalera)
-	game.addVisual(new PuertaEscape(estado=cerrada, position=game.at(19,12)))
-	game.addVisual(new Palanca(position = game.at(0,12)))
+	const puertaEscape=new PuertaEscape(estado=cerrada, position=game.at(19,12))
+	game.addVisual(puertaEscape)
+	const palanca=new Palanca(position = game.at(0,12))
+	game.addVisual(palanca)
 	
 	//timer
 	game.addVisual(indicador)
@@ -109,10 +111,22 @@ object nivel1 {
 	game.addVisual(animator.crearObjetoAnimado(antorcha2))
 	game.addVisual(animator.crearObjetoAnimado(antorcha3))
 
-	
-	atributos.vidaInicial()
-	//seteos iniciales
 	game.addVisual(animator.crearObjetoAnimado(caballero))
+	atributos.vidaInicial()
+	
+	game.say(caballero,"El casitillo ha sido capturado")
+	game.schedule(3000,{game.say(puertaEscape,"La puerta de escape")})
+	game.schedule(4000,{game.say(puertaEscape,"solo se abre con la llave maestra")})	
+	game.schedule(7000,{game.say(caballero,"La llave esta escondida")})
+	game.schedule(9000,{game.say(caballero,"en algun cofre")})
+	game.schedule(11000,{game.say(palanca,"Puedo usar la palanca ")})
+	game.schedule(13000,{game.say(palanca,"para abrir las puertas")})
+	//seteos iniciales
+	game.schedule(15000,{self.configuraciones()})
+
+	}
+	
+	method configuraciones(){
 	
 	config.configurarColisiones()
 	config.configurarTeclas()

@@ -34,9 +34,6 @@ object menu {
 	game.addVisual(animator.crearObjetoAnimado(antorcha2))
 	game.addVisual(animator.crearObjetoAnimado(antorcha3))
 	game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
-//	game.addVisual(new Banderin(position=game.at(19,12)))
-//	game.addVisual(new Banderin(position=game.at(0,2)))
-//	game.addVisual(new Banderin(position=game.at(19,2)))			
 	}
 }
 
