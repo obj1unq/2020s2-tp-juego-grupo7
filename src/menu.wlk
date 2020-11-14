@@ -97,6 +97,7 @@ object on{
 	method action(){
 		sonidos.soundOff(false)
 		game.say(self,"Sonido activado")
+		sonidos.musicaMenu()
 	}
 }
 object off{

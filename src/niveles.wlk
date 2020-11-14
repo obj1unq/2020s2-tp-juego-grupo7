@@ -46,9 +46,7 @@ object nivel1 {
 	game.height(14)
 	game.width(20)
 	game.ground("suelo.png")
-	
-	
-
+	sonidos.musicaFondo()
 	
 	//escenario
 	habitacion.crear(6,6,game.at(0,6))
@@ -138,7 +136,7 @@ object nivel1 {
 	game.onTick(700, "enemigo", { babosa3.mover()})
 	game.onTick(200, "enemigo", { babosa4.mover()})
 	
-	sonidos.musicaFondo()
+
 	generadorDeTrampas.agregarTrampas()
 	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
 	}

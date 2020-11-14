@@ -45,6 +45,8 @@ object caballero {
 			activados.colisiono(self)
 		}
 		else if (nivelDeVida == 0){
+		game.removeVisual(self)
+		game.addVisual(new Skull(position= self.position()))
 		game.removeTickEvent("verificar si estoy en pinche")
 		}
 	}
@@ -124,7 +126,6 @@ object caballero {
 	
 	method perder() {
 		sonidos.perder()
-		if(game.hasVisual(self)){game.say(self, "PERDI INSSSSTA")}
 		self.finalizarJuego()
 	}
 		
@@ -184,4 +185,9 @@ object powerUpAgujero {
 		atributos.monedaPerdida(moneda)
 		personaje.formaDeCaer(caer)
 	}
+}
+
+class Skull{
+	const property image="skull.png"
+	const property position
 }

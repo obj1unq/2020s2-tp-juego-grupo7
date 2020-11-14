@@ -2,7 +2,7 @@ import wollok.game.*
 
 object sonidos {
 	const property musicaFondo = game.sound("prueba1.mp3")
-	const property musicaMenu= game.sound("musicamenu.mp3")
+	var property musicaMenu= game.sound("musicamenu.mp3")
 	var property soundDanio=game.sound("danio.mp3")	
 	var property soundPerder=game.sound("perder.mp3")
 	var property soundMoneda=game.sound("moneda.wav")
@@ -71,6 +71,7 @@ object sonidos {
 	}
 	method stopMenu(){
 		musicaMenu.stop()
+		musicaMenu= game.sound("musicamenu.mp3")
 	}
 
 }
