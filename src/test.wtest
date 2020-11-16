@@ -1,0 +1,60 @@
+import caballero.*
+import trampas.*
+import sounds.*
+import wollok.game.*
+import escenarios.*
+import objetos.*
+import enemigos.*
+
+describe "test prueba" {
+	
+	fixture { 
+	sonidos.soundOff(true) 
+	game.addVisual(caballero)
+	game.addVisual(atributos)
+	}
+	
+  test "perder vida" {
+    const trampaPinche = new Trampa(pinches = activados)
+    game.addVisual(trampaPinche)
+	trampaPinche.voyAColisionar(caballero)
+	assert.equals(2, caballero.nivelDeVida())
+  }
+  
+  test "cae y desaparece" {
+  	const hueco = new Agujero(position = game.at(2,2))
+  	game.addVisual(hueco)
+  	hueco.colisiono(caballero)
+  	assert.notThat(game.hasVisual(caballero))
+  }
+  
+  test "powerup de pozos" {
+  	const monedaPower = new MonedaDeOro()
+  	const hueco = new Agujero(position = game.at(2,2))
+  	game.addVisual(monedaPower)
+  	game.addVisual(hueco)
+  	monedaPower.action()
+  	hueco.colisiono(caballero)
+  	assert.that(game.hasVisual(caballero))
+  }
+  
+  test "powerup de pinches" {
+  	const monedaPower = new MonedaDePlata()
+  	const trampaPinche = new Trampa(position = game.at(2,2))
+  	game.addVisual(monedaPower)
+  	game.addVisual(trampaPinche)
+  	monedaPower.action()
+  	trampaPinche.colisiono(caballero)
+  	assert.equals(3, caballero.nivelDeVida())
+  }
+  
+  test "powerup de babozas" {
+  	const monedaPower = new MonedaDeBronze()
+  	const baboza = new Enemigo(position = game.at(2,2))
+  	game.addVisual(monedaPower)
+  	game.addVisual(baboza)
+  	monedaPower.action()
+  	baboza.colisiono(caballero)
+  	assert.equals(3, caballero.nivelDeVida())
+  }
+}     
