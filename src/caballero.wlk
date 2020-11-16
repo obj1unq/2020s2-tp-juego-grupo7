@@ -132,8 +132,6 @@ object caballero {
 		game.schedule(5000, { game.stop() })
 	}
 	
-
-
 }
 
 

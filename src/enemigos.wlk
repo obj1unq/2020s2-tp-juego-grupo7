@@ -24,7 +24,7 @@ class Enemigo{
 		indexImg = (indexImg + 1) % 4
 	}
 	
-	method mover(){
+	method mover(){ //TODO: Cambiar Ifs
 		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position))
 		const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
 		
