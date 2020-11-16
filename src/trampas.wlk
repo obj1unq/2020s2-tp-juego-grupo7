@@ -13,24 +13,27 @@ class Trampa {
     
     
     method colisiono(personaje) {
-    	
+    	pinches.colisiono(personaje)
     	}
-    
-    
     	 
     method voyAColisionar(personaje) {
     	personaje.position(position)
-    	//pinches.voyAColisionar(personaje)
     }
     
     method animacion(){
-  	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
+  	    game.onTick(1000,"ANIMACION", {self.cambiarEstado()})}
     	
     
-    method cambiarImagen(){
+    method cambiarEstado(){
     	pinches.cambiarEstado(self)
-    	game.onCollideDo(self, {pinche => pinches.colisiono(caballero)})
+    	self.pincharSaliendo()
     }
+    
+	method pincharSaliendo() {
+		if (position == caballero.position()) {pinches.colisiono(caballero)}
+	}
+    
+
 }
 
 
@@ -45,8 +48,6 @@ object desactivados{
 	method cambiarEstado(trampa){
 		trampa.pinches(activados)
 	}
-	
-	//method voyAColisionar(personaje){}
 	
 	method colisiono(personaje){}
 }
@@ -65,9 +66,6 @@ object activados{
 		trampa.pinches(desactivados)
 	}
 	
-//	method voyAColisionar(personaje){
-//		//personaje.pinchate()	
-//	}
 	
 	method colisiono(personaje){
 		personaje.pinchate()

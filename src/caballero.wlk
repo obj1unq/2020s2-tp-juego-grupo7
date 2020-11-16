@@ -39,20 +39,6 @@ object caballero {
 	
 	
 	
-//	method estoyEnPinche(){
-//		const objeto = game.colliders(self)
-//		if (not objeto.isEmpty() and objeto.first().image() == activados.image()) {
-//			activados.colisiono(self)
-//		}
-//		else if (nivelDeVida == 0){
-//		game.removeVisual(self)
-//		game.addVisual(new Skull(position= self.position()))
-//		game.removeTickEvent("verificar si estoy en pinche")
-//		}
-//	}
-			
-
-	
 	method sacarVida(){	
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
@@ -65,9 +51,7 @@ object caballero {
 		self.perder()}}
 	
 	method caerEnAgujero(){		
-//		game.removeTickEvent("verificar si estoy en pinche")
 		game.removeVisual(self);
-
 		self.perder()
 		
 	}
@@ -123,7 +107,6 @@ object caballero {
 		
 	method gane(){
 		sonidos.nivelSuperado()
-//		game.removeTickEvent("verificar si estoy en pinche")
 		game.schedule(4000,game.removeVisual(self))
 		self.finalizarJuego()
 	}

@@ -8,7 +8,7 @@ import caballero.*
 import sounds.*
 
 object nivel1 {
-		//trampas
+	//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
 	const agujero2 = new Agujero(position = game.at(8,3))
 	const agujero3 = new Agujero(position = game.at(15,4))
@@ -139,7 +139,7 @@ object nivel1 {
 	
 
 	generadorDeTrampas.agregarTrampas()
-//	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
+
 	}
 		
 }
