@@ -131,6 +131,7 @@ object nivel1 {
 	config.configurarAnimaciones()
 
 	setTimer.configurar(90)
+	
 	game.onTick(500, "enemigo", { babosa.mover()})
 	game.onTick(1000, "enemigo", { babosa2.mover()})
 	game.onTick(700, "enemigo", { babosa3.mover()})
@@ -138,7 +139,7 @@ object nivel1 {
 	
 
 	generadorDeTrampas.agregarTrampas()
-	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
+//	game.onTick(1000,"verificar si estoy en pinche", {caballero.estoyEnPinche()})
 	}
 		
 }

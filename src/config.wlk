@@ -27,8 +27,7 @@ object config {
 	}
 
 	method configurarColisiones() {
-		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)
-		})
+		game.onCollideDo(caballero, { objeto => objeto.colisiono(caballero)})
 		}
 	method configurarTeclasMenu(){
 		keyboard.down().onPressDo({cursor.mover(cursor.position().down(2))})

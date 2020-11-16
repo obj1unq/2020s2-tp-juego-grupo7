@@ -8,7 +8,11 @@ import objetos.*
 object menu {
 	const property optionMenu=[start,setup,exit]
 	const property optionSetup=[on,off,back]
-	
+	const antorcha=new Antorcha(position=game.at(19,12))
+ 	const antorcha1=new Antorcha(position=game.at(19,1))
+ 	const antorcha2=new Antorcha(position=game.at(0,1))
+ 	const antorcha3=new Antorcha(position=game.at(0,12))
+ 	
 	method iniciarMenu(){
 	game.height(14)
 	game.width(20)
@@ -21,14 +25,12 @@ object menu {
  	habitacion.crearParedHorizontal(game.width()-1,game.origin().right(1))
  	habitacion.crearParedVertical(game.height()-1, game.at(19,1))
  	habitacion.crearParedHorizontal(game.width()-1,game.at(0,13))
- 	const antorcha=new Antorcha(position=game.at(19,12))
- 	const antorcha1=new Antorcha(position=game.at(19,1))
- 	const antorcha2=new Antorcha(position=game.at(0,1))
- 	const antorcha3=new Antorcha(position=game.at(0,12))
+
 	game.addVisual(start)
 	game.addVisual(setup)
 	game.addVisual(exit)
 	game.addVisual(cursor)
+	
 	game.addVisual(animator.crearObjetoAnimado(antorcha))
 	game.addVisual(animator.crearObjetoAnimado(antorcha1))
 	game.addVisual(animator.crearObjetoAnimado(antorcha2))
@@ -124,10 +126,4 @@ object back{
 	method setOption(){
 		menu.optionMenu().forEach({option=>game.addVisual(option)})
 	}
-}
-
-//decorado
-class Banderin{
-	const property image="banderin.png"
-	const property position
 }

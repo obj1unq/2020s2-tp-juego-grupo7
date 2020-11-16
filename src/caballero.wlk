@@ -39,17 +39,17 @@ object caballero {
 	
 	
 	
-	method estoyEnPinche(){
-		const objeto = game.colliders(self)
-		if (not objeto.isEmpty() and objeto.first().image() == activados.image()) {
-			activados.colisiono(self)
-		}
-		else if (nivelDeVida == 0){
-		game.removeVisual(self)
-		game.addVisual(new Skull(position= self.position()))
-		game.removeTickEvent("verificar si estoy en pinche")
-		}
-	}
+//	method estoyEnPinche(){
+//		const objeto = game.colliders(self)
+//		if (not objeto.isEmpty() and objeto.first().image() == activados.image()) {
+//			activados.colisiono(self)
+//		}
+//		else if (nivelDeVida == 0){
+//		game.removeVisual(self)
+//		game.addVisual(new Skull(position= self.position()))
+//		game.removeTickEvent("verificar si estoy en pinche")
+//		}
+//	}
 			
 
 	
@@ -62,23 +62,14 @@ object caballero {
 	
 	method caerEnAgujero(){
 		
-		
-		if (formaDeCaer == caer){
-		self.validarCantidadTrampas()
 		game.removeTickEvent("verificar si estoy en pinche")
 		 
 		game.removeVisual(self);
 
 		self.perder()
-		}
+		
 	}
 	
-	
-	method validarCantidadTrampas(){
-		if ( generadorDeTrampas.cantDeTrampas() != 7){
-			game.removeTickEvent("NUEVA TRAMPA")
-		}
-	}
 	
 	method irASiEsPosible(nuevaPosicion) {
 		self.cambiarDireccion(nuevaPosicion)
@@ -113,9 +104,8 @@ object caballero {
 	method interactuarConObjeto() {
 
 		var objetos = game.colliders(self)
-			objetos+=game.getObjectsIn(direccion.siguientePosicion(self.position()))
-
-			
+			objetos+=game.getObjectsIn(direccion.siguientePosicion(self.position()))		
+		
 		if (objetos.isEmpty()) {
 			self.error("No hay nada acá")
 		}
@@ -131,7 +121,6 @@ object caballero {
 		
 	method gane(){
 		sonidos.nivelSuperado()
-		game.say(self, "GANE PERRO")
 		game.removeTickEvent("verificar si estoy en pinche")
 		game.schedule(4000,game.removeVisual(self))
 		self.finalizarJuego()

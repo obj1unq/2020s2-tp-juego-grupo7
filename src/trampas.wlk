@@ -79,10 +79,8 @@ object generadorDeTrampas {
 			game.addVisual(trampita)
 			cantDeTrampas+=1
 			self.validarCaballero()
-			//game.removeVisual(caballero)
-			//game.addVisual(caballero)
 			trampita.animacion()
-			if(cantDeTrampas==7)game.removeTickEvent("NUEVA TRAMPA")
+			if(cantDeTrampas==9)game.removeTickEvent("NUEVA TRAMPA")
 	}
 	
 	method agregarTrampas(){ 
