@@ -56,14 +56,16 @@ object caballero {
 	method sacarVida(){	
 		nivelDeVida = (nivelDeVida - 1).max(0)	
 		atributos.disminuirVida(self)	
-		if (nivelDeVida == 0) 
-		self.perder() 
+		self.validacionDeVida()
 	}
+	method validacionDeVida(){
+		if (nivelDeVida == 0){ 
+		game.removeVisual(self)
+ 		game.addVisual(new Skull(position= self.position()))
+		self.perder()}}
 	
-	method caerEnAgujero(){
-		
-		game.removeTickEvent("verificar si estoy en pinche")
-		 
+	method caerEnAgujero(){		
+//		game.removeTickEvent("verificar si estoy en pinche")
 		game.removeVisual(self);
 
 		self.perder()
@@ -121,7 +123,7 @@ object caballero {
 		
 	method gane(){
 		sonidos.nivelSuperado()
-		game.removeTickEvent("verificar si estoy en pinche")
+//		game.removeTickEvent("verificar si estoy en pinche")
 		game.schedule(4000,game.removeVisual(self))
 		self.finalizarJuego()
 	}
@@ -141,7 +143,8 @@ object perderVida {
 	var property moneda
 	method sacarVida(personaje){
 		personaje.sacarVida()
-		game.say(caballero,"Ouch! me quedan "+caballero.nivelDeVida().toString()+" vidas")
+		if(personaje.nivelDeVida()>0){
+		game.say(caballero,"Ouch! me quedan "+caballero.nivelDeVida().toString()+" vidas")}
 	}
 	
 }
