@@ -23,30 +23,57 @@ class Enemigo{
 	method cambiarImagen(){
 		indexImg = (indexImg + 1) % 4
 	}
+
+
 	
 	method mover(){ //TODO: Cambiar Ifs
 		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position))
 		const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
 		
-		if (imagenesObjetos.contains("trampapinche_0.png") or imagenesObjetos.contains("trampapinche_1.png") or imagenesObjetos.contains("puertaAbierta.png")){
+		self.encontreObjetos(imagenesObjetos,objetoAlLado)
+	}
+	
+	
+	method encontreObjetos(imagenesObjetos,objetoAlLado){
+		if (self.sonObjetos(imagenesObjetos)){
 			direccion = direccion.direccionOpuesta()
 			movimientosRealizados = 0
-		}
-		
-		else if (objetoAlLado.contains(caballero)){
-			position = direccion.siguientePosicion(position)
-			movimientosRealizados +=1
-		}
-		else if (not objetoAlLado.isEmpty() or not self.estoyDentroDelTablero(direccion.siguientePosicion(position)) or self.completeRecorrido()){
-			direccion = direccion.direccionOpuesta()
-			movimientosRealizados = 0
-		}
-		else{
-			position = direccion.siguientePosicion(position)
-			movimientosRealizados +=1
-			
+		}else{
+			self.encontreCaballero(objetoAlLado)
 		}
 	}
+	
+	method sonObjetos(imagenesObjetos){
+		return imagenesObjetos.contains("trampapinche_0.png") or imagenesObjetos.contains("trampapinche_1.png") or imagenesObjetos.contains("puertaAbierta.png")
+	}
+	
+	method encontreCaballero(objetoAlLado){
+		if (self.esCaballero(objetoAlLado)){
+			position = direccion.siguientePosicion(position)
+			movimientosRealizados +=1
+		}else{
+			self.encontreLimiteOFinalRecorrido(objetoAlLado)
+		}
+	}
+	
+	method esCaballero(objetoAlLado){
+		return objetoAlLado.contains(caballero)
+	}
+	
+	method encontreLimiteOFinalRecorrido(objetoAlLado){
+		if (self.esFinalDelTableroOFinalRecorrido(objetoAlLado)){
+			direccion = direccion.direccionOpuesta()
+			movimientosRealizados = 0
+		}else{
+			position = direccion.siguientePosicion(position)
+			movimientosRealizados +=1
+		}
+	}
+	
+	method esFinalDelTableroOFinalRecorrido(objetoAlLado){
+		return not self.estoyDentroDelTablero(direccion.siguientePosicion(position)) or self.completeRecorrido()
+	}
+	
 	
 	
 	
