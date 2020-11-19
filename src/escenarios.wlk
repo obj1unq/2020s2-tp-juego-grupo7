@@ -61,7 +61,7 @@ object atributos{
 	const vidaImg=["corazon0.png","corazon1.png","corazon2.png"]
 	var property image="corazon3.png"
 	const property position=game.at(2,13)
-	var iniMonedas=game.at(19,13)
+	var property iniMonedas=game.at(19,13)
 	
 	method monedaRecolectada(unaMoneda){
 		game.removeVisual(unaMoneda)
@@ -80,6 +80,11 @@ object atributos{
 		const vidaPersonaje=personaje.nivelDeVida()
 		self.image(vidaImg.get(vidaPersonaje))
 		self.vidaInicial()
+	}
+	
+	method reestablecer(){
+		image="corazon3.png"
+		iniMonedas=game.at(19,13)
 	}
 }
 
@@ -106,6 +111,13 @@ class Tiempo {
 	}
 	
 	method convertirNumero(cronometro) 
+	
+	method reestablecer(){
+		segundo.unidad(0)
+		segundo.decena(0)
+		minuto.unidad(0)
+		minuto.unidad(0)
+	}
 	
 }
 
@@ -171,4 +183,15 @@ object indicador {
 	
 	method image() = "Contador de Vidas.png"
 	method position() = game.at(1,13)
+}
+
+
+object ganador{
+	const property position=game.at(7,5)
+	method image()="win.png"
+}
+
+object perdedor{
+	const property position=game.at(7,5)
+	method image()="gameover.png"
 }

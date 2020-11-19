@@ -5,6 +5,7 @@ import escenarios.*
 import sounds.*
 import config.*
 import niveles.*
+import menu.*
 
 object caballero {
 	var indexImg = 0
@@ -16,6 +17,17 @@ object caballero {
 	var property formaDeCaer = caer
 	var property tieneLlave=false
 	
+	method reestablecer(){
+	indexImg = 0
+	position = game.at(0,0)
+	direccion = derecha
+	nivelDeVida = 3
+	formaDePincharse = perderVida
+	formaDeRecibirDanio = perderVida
+	formaDeCaer = caer
+	tieneLlave=false
+		
+	}
 	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
 	}
@@ -25,7 +37,7 @@ object caballero {
 	}
 	
 	method pinchate(){
-		sonidos.danio()
+		sonidos.play(game.sound("danio.mp3"))
 		formaDePincharse.sacarVida(self)
 	}
 	
@@ -101,18 +113,21 @@ object caballero {
 	
 	
 	method perder() {
-		sonidos.perder()
+		game.addVisual(perdedor)
+		sonidos.play(game.sound("perder.mp3"))
 		self.finalizarJuego()
 	}
 		
 	method gane(){
+		game.addVisual(ganador)
 		sonidos.nivelSuperado()
 		game.schedule(4000,game.removeVisual(self))
 		self.finalizarJuego()
 	}
 
 	method finalizarJuego() {
-		game.schedule(5000, { game.stop() })
+		
+		game.schedule(5000, { menu.restart() })
 	}
 	
 }

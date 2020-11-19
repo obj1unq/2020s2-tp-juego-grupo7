@@ -13,7 +13,7 @@ class Moneda {
 	
 	method action() {		
 		atributos.monedaRecolectada(self)
-		sonidos.moneda()
+		sonidos.play(game.sound("moneda.wav"))
 	}	
 	method image() 
 	method colisiono(personaje){ }
@@ -90,7 +90,7 @@ class PuertaEscape inherits Puerta{
 	}
 	override method cambiarEstado(){
 		if(caballero.tieneLlave()){
-		   sonidos.puerta()	
+		   sonidos.play(game.sound("puerta.wav"))	
 		   estado.cambiar(self)
 		   escalera.oculta(false)
 		   
@@ -123,7 +123,7 @@ class Palanca {
 	method image() = "palanca_" + estado + ".png" 
 	method action() {
 		self.cambiarEstadoPuertas()
-		sonidos.puerta()
+		sonidos.play(game.sound("puerta.wav"))
 	}
 	method voyAColisionar(personaje){ personaje.position(position) }
 	method colisiono(personaje){  }
@@ -191,7 +191,7 @@ object cofreCerrado{
 	const property image="cofre.png"
 	
 	method action(cofre){
-		sonidos.cofre()
+		sonidos.play(game.sound("cofre.mp3"))
 		cofre.estado(cofreAbierto)
 		
 	}
@@ -210,7 +210,7 @@ class Llave{
 		indexImg = (indexImg+1) % 4
 	}
 	method action(){
-		sonidos.llave()
+		sonidos.play(game.sound("llave.mp3"))
 		game.say(caballero,"Si!, puedo escapar")
 		game.removeVisual(self)
 		caballero.tieneLlave(true)

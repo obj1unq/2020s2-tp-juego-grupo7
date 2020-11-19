@@ -8,17 +8,20 @@ import caballero.*
 import sounds.*
 
 object nivel1 {
-	//trampas
+
+	
+	method iniciarEscenario(){
+		//trampas
 	const agujero1 = new Agujero(position = game.at(5,5))
 	const agujero2 = new Agujero(position = game.at(8,3))
 	const agujero3 = new Agujero(position = game.at(15,4))
 	const agujero4 = new Agujero(position = game.at(1,3))
 	
 	//enemigos	
-	const babosa = new Enemigo(position = game.at(10,4),direccion = izquierda,movimientosALlegar = 10)
-	const babosa2 = new Enemigo(position = game.at(12,5),direccion = derecha,movimientosALlegar= 7)
-	const babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
-	const babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
+	var  babosa = new Enemigo(position = game.at(10,4),direccion = izquierda,movimientosALlegar = 10)
+	var  babosa2 = new Enemigo(position = game.at(12,5),direccion = derecha,movimientosALlegar= 7)
+	var  babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
+	var  babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
 
 	
 	//power ups
@@ -42,11 +45,10 @@ object nivel1 {
  	const antorcha2=new Antorcha(position=game.at(9,1))
  	const antorcha3=new Antorcha(position=game.at(7,7))
 	
-	method iniciarEscenario(){
 	game.height(14)
 	game.width(20)
 	game.ground("suelo.png")
-	sonidos.musicaFondo()
+	sonidos.playMusic(game.sound("prueba1.mp3"))
 	
 	//escenario
 	habitacion.crear(6,6,game.at(0,6))
@@ -119,8 +121,12 @@ object nivel1 {
 	game.schedule(9000,{game.say(caballero,"en algun cofre")})
 	game.schedule(11000,{game.say(palanca,"Puedo usar la palanca ")})
 	game.schedule(13000,{game.say(palanca,"para abrir las puertas")})
-	//seteos iniciales
+	
 	game.schedule(15000,{self.configuraciones()})
+	game.schedule(15000,{self.configuracionEnemigos(500,babosa)})
+	game.schedule(15000,{self.configuracionEnemigos(1000,babosa2)})
+	game.schedule(15000,{self.configuracionEnemigos(700,babosa3)})
+	game.schedule(15000,{self.configuracionEnemigos(200,babosa4)})
 
 	}
 	
@@ -131,14 +137,19 @@ object nivel1 {
 	config.configurarAnimaciones()
 
 	setTimer.configurar(90)
-	
-	game.onTick(500, "enemigo", { babosa.mover()})
-	game.onTick(1000, "enemigo", { babosa2.mover()})
-	game.onTick(700, "enemigo", { babosa3.mover()})
-	game.onTick(200, "enemigo", { babosa4.mover()})
-	
-
 	generadorDeTrampas.agregarTrampas()
+	}
+	
+	method configuracionEnemigos(tiempo,enemigo){
+	game.onTick(tiempo, "enemigo", { enemigo.mover()})}
+
+
+	
+	method restart(){
+		caballero.reestablecer()
+		atributos.reestablecer()
+		segundo.reestablecer()
+		minuto.reestablecer()
 
 	}
 		

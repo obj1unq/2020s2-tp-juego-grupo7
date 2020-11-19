@@ -14,28 +14,53 @@ object menu {
  	const antorcha3=new Antorcha(position=game.at(0,12))
  	
 	method iniciarMenu(){
-	game.height(14)
-	game.width(20)
-	game.ground("suelo.png")
-	config.configurarTeclasMenu()
+		game.height(14)
+		game.width(20)
+		game.ground("suelo.png")
+		config.configurarTeclasMenu()
 
-	sonidos.musicaMenu()
+		sonidos.playMusic(game.sound("musicamenu.mp3"))
 	
-	habitacion.crearParedVertical(game.height(), game.origin())
- 	habitacion.crearParedHorizontal(game.width()-1,game.origin().right(1))
- 	habitacion.crearParedVertical(game.height()-1, game.at(19,1))
- 	habitacion.crearParedHorizontal(game.width()-1,game.at(0,13))
-
-	game.addVisual(start)
-	game.addVisual(setup)
-	game.addVisual(exit)
-	game.addVisual(cursor)
+		habitacion.crearParedVertical(game.height(), game.origin())
+ 		habitacion.crearParedHorizontal(game.width()-1,game.origin().right(1))
+ 		habitacion.crearParedVertical(game.height()-1, game.at(19,1))
+ 		habitacion.crearParedHorizontal(game.width()-1,game.at(0,13))
+		
+		game.addVisual(cursor)
+		
+		self.setMenu()
+		self.visualesAntorchas()
+		
+		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
+	}
 	
-	game.addVisual(animator.crearObjetoAnimado(antorcha))
-	game.addVisual(animator.crearObjetoAnimado(antorcha1))
-	game.addVisual(animator.crearObjetoAnimado(antorcha2))
-	game.addVisual(animator.crearObjetoAnimado(antorcha3))
-	game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
+	method visualesAntorchas(){
+		game.addVisual(animator.crearObjetoAnimado(antorcha))
+		game.addVisual(animator.crearObjetoAnimado(antorcha1))
+		game.addVisual(animator.crearObjetoAnimado(antorcha2))
+		game.addVisual(animator.crearObjetoAnimado(antorcha3))
+	}
+	
+	method restart(){
+		sonidos.stopMusic()
+		game.clear()
+		nivel1.restart()
+		self.iniciarMenu()
+	}
+	
+	method cleanMenu(){
+		optionMenu.forEach({option=>game.removeVisual(option)})
+	}
+	
+	method setMenu(){
+		optionMenu.forEach({option=>game.addVisual(option)})
+	}
+	method cleanSetup(){
+		optionSetup.forEach({option=>game.removeVisual(option)})
+	}
+	
+	method setSetup(){
+		optionSetup.forEach({option=>game.addVisual(option)})
 	}
 }
 
@@ -63,7 +88,7 @@ object start{
 	var property image="start.png"
 	var property position=game.at(9,9)
 	method action(){
-		sonidos.stopMenu()
+		sonidos.stopMusic()
 		game.clear()
 		nivel1.iniciarEscenario()
 	}
@@ -73,14 +98,8 @@ object setup{
 	var property image="setup.png"
 	var property position=game.at(9,7)
 	method action(){
-		self.cleanOption()
-		self.setOption()
-	}
-	method cleanOption(){
-		menu.optionMenu().forEach({option=>game.removeVisual(option)})
-	}
-	method setOption(){
-		menu.optionSetup().forEach({option=>game.addVisual(option)})
+		menu.cleanMenu()
+		menu.setSetup()
 	}
 }
 
@@ -99,7 +118,7 @@ object on{
 	method action(){
 		sonidos.soundOff(false)
 		game.say(self,"Sonido activado")
-		sonidos.musicaMenu()
+		sonidos.playMusic(game.sound("musicamenu.mp3"))
 	}
 }
 object off{
@@ -107,7 +126,7 @@ object off{
 	var property position=game.at(9,7)
 	method action(){
 		sonidos.soundOff(true)
-		sonidos.stopMenu()
+		sonidos.stopMusic()
 		game.say(self,"Sonido desactivado")
 	}
 }
@@ -117,13 +136,7 @@ object back{
 	var property position=game.at(9,5)
 	
 	method action(){
-		self.cleanOption()
-		self.setOption()	
+		menu.cleanSetup()
+		menu.setMenu()	
 	}	
-	method cleanOption(){
-		menu.optionSetup().forEach({option=>game.removeVisual(option)})
-	}
-	method setOption(){
-		menu.optionMenu().forEach({option=>game.addVisual(option)})
-	}
 }

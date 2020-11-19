@@ -15,7 +15,13 @@ class Enemigo{
 	var property movimientosRealizados = 0
 	var property movimientosALlegar = null
 	
-	
+	method reestablecer(){
+		position = game.at(0,0)
+	    indexImg = 0
+		direccion = null
+		movimientosRealizados = 0
+		movimientosALlegar = null
+	}
 	method image() {
 		return "demon" + direccion.nombre()   + "_" + indexImg + ".png"
 	}
@@ -88,7 +94,7 @@ class Enemigo{
 	
 	method colisiono(personaje){
 		personaje.hacerteDanio() 
-		sonidos.babosa()
+		sonidos.play(game.sound("babosa.wav"))
 	}
 	
 	method voyAColisionar(personaje){
