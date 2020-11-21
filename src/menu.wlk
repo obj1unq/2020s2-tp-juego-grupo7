@@ -7,7 +7,7 @@ import objetos.*
 
 object menu {
 	const property optionMenu=[start,setup,exit]
-	const property optionSetup=[on,off,back]
+	
 	const antorcha=new Antorcha(position=game.at(19,12))
  	const antorcha1=new Antorcha(position=game.at(19,1))
  	const antorcha2=new Antorcha(position=game.at(0,1))
@@ -28,7 +28,7 @@ object menu {
 		
 		game.addVisual(cursor)
 		
-		self.setMenu()
+		self.setOptions(optionMenu)
 		self.visualesAntorchas()
 		
 		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
@@ -48,19 +48,12 @@ object menu {
 		self.iniciarMenu()
 	}
 	
-	method cleanMenu(){
-		optionMenu.forEach({option=>game.removeVisual(option)})
+	method cleanOptions(options){
+		options.forEach({option=>game.removeVisual(option)})
 	}
 	
-	method setMenu(){
-		optionMenu.forEach({option=>game.addVisual(option)})
-	}
-	method cleanSetup(){
-		optionSetup.forEach({option=>game.removeVisual(option)})
-	}
-	
-	method setSetup(){
-		optionSetup.forEach({option=>game.addVisual(option)})
+	method setOptions(options){
+		options.forEach({option=>game.addVisual(option)})
 	}
 }
 
@@ -97,9 +90,10 @@ object start{
 object setup{
 	var property image="setup.png"
 	var property position=game.at(9,7)
+	const property optionSetup=[on,off,back]
 	method action(){
-		menu.cleanMenu()
-		menu.setSetup()
+		menu.cleanOptions(menu.optionMenu())
+		menu.setOptions(optionSetup)
 	}
 }
 
@@ -136,7 +130,7 @@ object back{
 	var property position=game.at(9,5)
 	
 	method action(){
-		menu.cleanSetup()
-		menu.setMenu()	
+		menu.cleanOptions(setup.optionSetup())
+		menu.setOptions(menu.optionMenu())	
 	}	
 }
