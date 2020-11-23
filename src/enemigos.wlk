@@ -14,14 +14,7 @@ class Enemigo{
 	var property direccion = null
 	var property movimientosRealizados = 0
 	var property movimientosALlegar = null
-	
-	method reestablecer(){
-		position = game.at(0,0)
-	    indexImg = 0
-		direccion = null
-		movimientosRealizados = 0
-		movimientosALlegar = null
-	}
+
 	method image() {
 		return "demon" + direccion.nombre()   + "_" + indexImg + ".png"
 	}

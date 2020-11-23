@@ -139,8 +139,6 @@ object perderVida {
 	var property moneda
 	method sacarVida(personaje){
 		personaje.sacarVida()
-		if(personaje.nivelDeVida()>0){
-		game.say(caballero,"Ouch! me quedan "+caballero.nivelDeVida().toString()+" vidas")}
 	}
 	
 }

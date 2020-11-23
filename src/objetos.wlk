@@ -14,8 +14,14 @@ class Moneda {
 	method action() {		
 		atributos.monedaRecolectada(self)
 		sonidos.play(game.sound("moneda.wav"))
+		game.say(caballero, self.description())
+		self.powerUp()
 	}	
-	method image() 
+	method description()
+	method powerUp()
+	
+	method image(){return self.nombre()+indexImg.toString() + ".png"} 
+	method nombre()
 	method colisiono(personaje){ }
 	method voyAColisionar(personaje) {personaje.position(position)}
 	method cambiarImagen() { indexImg = (indexImg+1) % 10 }
@@ -23,10 +29,11 @@ class Moneda {
 }
 
 class MonedaDeOro inherits Moneda {
-	override method image() = "Gold_2"+ indexImg.toString() + ".png"
-	override method action(){ 
-		super()
-		game.say(caballero,"Ahora podre evitar los pozos")
+	override method nombre() = "Gold_2"
+	override method description(){ 
+		return "Ahora podre evitar los pozos"}
+		
+	override method powerUp(){
 		caballero.formaDeCaer(powerUpAgujero)
 		powerUpAgujero.moneda(self)
 	}
@@ -35,21 +42,21 @@ class MonedaDeOro inherits Moneda {
 }
 
 class MonedaDePlata inherits Moneda {
-	override method image() = "Silver_2"+ indexImg.toString() + ".png"
-	override method action(){ 
-		super()
-		game.say(caballero,"Ahora podre evitar las trampas")
+	override method nombre() = "Silver_2"
+	override method description(){ 
+		return "Ahora podre evitar las trampas"}
+	override method powerUp(){
 		caballero.formaDePincharse(powerUpPinches)
 		powerUpPinches.moneda(self)
-			}	
+		}	
 
 }
 
 class MonedaDeBronze inherits Moneda {
-	override method image() = "Bronze_2"+ indexImg.toString() + ".png"
-	override method action(){ 
-		super()
-		game.say(caballero,"Ahora podre evitar las babosas")
+	override method nombre() = "Bronze_2"
+	override method description(){ 
+		return "Ahora podre evitar las babosas"}
+	override method powerUp(){
 		caballero.formaDeRecibirDanio(powerUpDanio)
 		powerUpDanio.moneda(self)
 	}

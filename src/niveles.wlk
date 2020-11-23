@@ -23,7 +23,7 @@ object nivel1 {
 		var  babosa3 = new Enemigo(position = game.at(6,6),direccion = arriba,movimientosALlegar=6)
 		var  babosa4 = new Enemigo(position = game.at(7,2),direccion = derecha,movimientosALlegar=5)
 
-
+			
 	//power ups
 		const monedaBronze = new MonedaDeBronze(position = game.at(10, 9))
 		const monedaOro = new MonedaDeOro(position = game.at(4, 7))
