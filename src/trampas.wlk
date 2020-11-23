@@ -10,22 +10,28 @@ class Trampa {
     var property pinches = desactivados
     method image() = pinches.image()
     method action() {}
+    
     method colisiono(personaje) {
-    	}
+        pinches.colisiono(personaje)
+        }
     
     
     	 
     method voyAColisionar(personaje) {
     	personaje.position(position)
-    	pinches.voyAColisionar(personaje)
  
     }
     method animacion(){
-  	    game.onTick(1000,"ANIMACION", {self.cambiarImagen()})}
+  	    game.onTick(1000,"ANIMACION", {self.cambiarEstado()})}
     	
     
-    method cambiarImagen(){
-    	pinches.cambiarEstado(self)
+   	method cambiarEstado(){
+        pinches.cambiarEstado(self)
+        self.pincharSaliendo()
+    }
+    
+    method pincharSaliendo() {
+    if (position == caballero.position()) {pinches.colisiono(caballero)}
     }
 }
 
