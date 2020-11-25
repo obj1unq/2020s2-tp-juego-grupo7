@@ -101,13 +101,9 @@ class PuertaEscape inherits Puerta{
 	override method cambiarEstado(){
 		if(caballero.tieneLlave()){
 		   super()
-		   escalera.oculta(false)
 		   
 		}
 		else game.say(self,"Debes conseguir llave")
-	}
-	override method colisiono(personaje){
-		personaje.gane()
 	}
 }
 
@@ -235,9 +231,11 @@ object escalera{
 	var property oculta=true
 	method image()="escalera.png"
 	method action(){}
-	method colisiono(personaje){}
+	method colisiono(personaje){
+		personaje.gane()
+	}
 	method voyAColisionar(personaje){ 
-		if(not oculta){personaje.position(position)}
+		personaje.position(position)
 	}
 }
 

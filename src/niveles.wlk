@@ -94,7 +94,7 @@ object nivel1 {
 		game.addVisual(aberturas.crearPuerta(cerrada, game.at(7, 8)))
 		game.addVisual(aberturas.crearPuerta(abierta, game.at(13, 2)))
 		game.addVisual(escalera)
-		const puertaEscape=new PuertaEscape(estado=cerrada, position=game.at(19,12))
+		const puertaEscape=new PuertaEscape(estado=cerrada, position=game.at(18,12))
 		game.addVisual(puertaEscape)
 		const palanca=new Palanca(position = game.at(0,12))
 		game.addVisual(palanca)
