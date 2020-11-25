@@ -9,11 +9,11 @@ import sounds.*
 
 class Enemigo{
 	
-	var property position = game.at(0,0)
-	var indexImg = 0
-	var property direccion = null
-	var property movimientosRealizados = 0
-	var property movimientosALlegar = null
+	var property position
+	var indexImg =0
+	var property direccion 
+	var property movimientosRealizados=0 
+	var property movimientosALlegar
 
 	method image() {
 		return "demon" + direccion.nombre()   + "_" + indexImg + ".png"
@@ -29,11 +29,11 @@ class Enemigo{
 		const proxPosicion = direccion.siguientePosicion(position)
 		const objetosAlLado = game.getObjectsIn(proxPosicion)
 	//	const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
-		self.finalDeRecorrido()
+		self.esFinalDeRecorrido()
 		self.movimiento(objetosAlLado,proxPosicion)
 	//	self.encontreObjetos(imagenesObjetos,objetoAlLado)
 	}
-	method finalDeRecorrido(){
+	method esFinalDeRecorrido(){
 		if(movimientosALlegar==movimientosRealizados){
 			direccion=direccion.direccionOpuesta()
 			movimientosRealizados=0
@@ -103,7 +103,7 @@ class Enemigo{
 //	
 	method colisiono(personaje){
 		personaje.hacerteDanio() 
-		sonidos.play(game.sound("babosa.wav"))
+		sonidos.play("babosa.wav")
 	}
 	
 	method voyAColisionar(personaje){

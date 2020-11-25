@@ -48,7 +48,7 @@ object nivel1 {
 		game.height(14)
 		game.width(20)
 		game.ground("suelo.png")
-		sonidos.playMusic(game.sound("prueba1.mp3"))
+		sonidos.playMusic("prueba1.mp3")
 	
 	//escenario
 		habitacion.crear(6,6,game.at(0,6))

@@ -18,16 +18,16 @@ object caballero {
 	var property tieneLlave=false
 	
 	method reestablecer(){
-	indexImg = 0
-	position = game.at(0,0)
-	direccion = derecha
-	nivelDeVida = 3
-	formaDePincharse = perderVida
-	formaDeRecibirDanio = perderVida
-	formaDeCaer = caer
-	tieneLlave=false
-		
+		indexImg = 0
+		position = game.at(0,0)
+		direccion = derecha
+		nivelDeVida = 3
+		formaDePincharse = perderVida
+		formaDeRecibirDanio = perderVida
+		formaDeCaer = caer
+		tieneLlave=false	
 	}
+	
 	method image(){
 		return "caballero"+ direccion.nombre() + "_"+ indexImg + ".png"
 	}
@@ -37,7 +37,7 @@ object caballero {
 	}
 	
 	method pinchate(){
-		sonidos.play(game.sound("danio.mp3"))
+		sonidos.play("danio.mp3")
 		formaDePincharse.sacarVida(self)
 	}
 	
@@ -114,19 +114,19 @@ object caballero {
 	
 	method perder() {
 		game.addVisual(perdedor)
-		sonidos.play(game.sound("perder.mp3"))
+		sonidos.play("perder.mp3")
 		self.finalizarJuego()
 	}
 		
 	method gane(){
 		game.addVisual(ganador)
-		sonidos.nivelSuperado()
-		game.schedule(4000,game.removeVisual(self))
+		sonidos.stopMusic()
+		sonidos.playMusic("ganar.mp3")
+		game.removeVisual(self)
 		self.finalizarJuego()
 	}
 
 	method finalizarJuego() {
-		
 		game.schedule(5000, { menu.restart() })
 	}
 	

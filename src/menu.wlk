@@ -19,7 +19,7 @@ object menu {
 		game.ground("suelo.png")
 		config.configurarTeclasMenu()
 
-		sonidos.playMusic(game.sound("musicamenu.mp3"))
+		sonidos.playMusic("musicamenu.mp3")
 	
 		habitacion.crearParedVertical(game.height(), game.origin())
  		habitacion.crearParedHorizontal(game.width()-1,game.origin().right(1))

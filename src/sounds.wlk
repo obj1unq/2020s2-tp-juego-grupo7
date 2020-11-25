@@ -7,7 +7,7 @@ object sonidos {
 	
 	method play(unSonido){
 		if(not soundOff){
-			unSonido.play()}
+			game.sound(unSonido).play()}
 	}
 	
 	method stopMusic(){
@@ -16,7 +16,7 @@ object sonidos {
 	
 	method playMusic(unaMusica){
 		if(not soundOff){
-			musica=unaMusica
+			musica=game.sound(unaMusica)
 			musica.shouldLoop(true)
 			game.schedule(100, {musica.play()})	
 		}
