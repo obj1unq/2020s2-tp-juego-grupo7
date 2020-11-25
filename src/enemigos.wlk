@@ -25,7 +25,7 @@ class Enemigo{
 
 
 	
-	method mover(){ //TODO: Cambiar Ifs
+	method mover(){ 
 		const proxPosicion = direccion.siguientePosicion(position)
 		const objetosAlLado = game.getObjectsIn(proxPosicion)
 	//	const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
@@ -41,18 +41,14 @@ class Enemigo{
 	}
 	method movimiento(objetos,posicion){
 		if(self.estoyDentroDelTablero(posicion))
-			if (objetos.contains(caballero)){
+			if (self.hayCaballero(objetos) or objetos.isEmpty()){
 				position=posicion
 				movimientosRealizados+=1
 			}
-			else if(objetos.isEmpty()){
-				position=posicion
-				movimientosRealizados+=1
-				}
 			else direccion=direccion.direccionOpuesta()
 		
 	}
-	
+	method hayCaballero(lista)=lista.contains(caballero)
 //	method encontreObjetos(imagenesObjetos,objetoAlLado){
 //		if (self.sonObjetos(imagenesObjetos)){
 //			direccion = direccion.direccionOpuesta()
