@@ -21,14 +21,7 @@ object sonidos {
 			game.schedule(100, {musica.play()})	
 		}
 	}
-	
-	method nivelSuperado(){
-		if(not soundOff){
-			musica.stop()
-			soundWinner.play()
-			game.schedule(4000, {soundWinner.stop()})
-		}
-	}
+
 	
 	method soundOff(booleano){
 		soundOff=booleano

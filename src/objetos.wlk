@@ -88,7 +88,10 @@ class Puerta {
 	method colisiono(personaje) {
 	}
 	method voyAColisionar(personaje){ estado.voyAColisionar(personaje, position) }
-	method cambiarEstado() { estado.cambiar(self) }
+	method cambiarEstado() { 
+		sonidos.play("puerta.wav")
+		estado.cambiar(self)
+	}
 }
 
 class PuertaEscape inherits Puerta{
@@ -97,8 +100,7 @@ class PuertaEscape inherits Puerta{
 	}
 	override method cambiarEstado(){
 		if(caballero.tieneLlave()){
-		   sonidos.play("puerta.wav")	
-		   estado.cambiar(self)
+		   super()
 		   escalera.oculta(false)
 		   
 		}
@@ -130,7 +132,7 @@ class Palanca {
 	method image() = "palanca_" + estado + ".png" 
 	method action() {
 		self.cambiarEstadoPuertas()
-		sonidos.play("puerta.wav")
+		
 	}
 	method voyAColisionar(personaje){ personaje.position(position) }
 	method colisiono(personaje){  }
