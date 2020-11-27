@@ -17,7 +17,7 @@ describe "test prueba" {
   test "perder vida" {
     const trampaPinche = new Trampa(pinches = activados)
     game.addVisual(trampaPinche)
-	trampaPinche.voyAColisionar(caballero)
+	trampaPinche.colisiono(caballero)
 	assert.equals(2, caballero.nivelDeVida())
   }
   

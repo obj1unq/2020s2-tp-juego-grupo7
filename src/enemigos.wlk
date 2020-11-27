@@ -11,9 +11,9 @@ class Enemigo{
 	
 	var property position
 	var indexImg =0
-	var property direccion 
+	var property direccion = null
 	var property movimientosRealizados=0 
-	var property movimientosALlegar
+	var property movimientosALlegar = 0
 
 	method image() {
 		return "demon" + direccion.nombre()   + "_" + indexImg + ".png"
