@@ -9,7 +9,6 @@ class Moneda {
 
 	var property position = game.at(10, 9)
 	var indexImg = 0
-
 	
 	method action() {		
 		atributos.monedaRecolectada(self)
@@ -18,8 +17,7 @@ class Moneda {
 		self.powerUp()
 	}	
 	method description()
-	method powerUp()
-	
+	method powerUp() 	
 	method image(){return self.nombre()+indexImg.toString() + ".png"} 
 	method nombre()
 	method colisiono(personaje){ }
@@ -34,8 +32,9 @@ class MonedaDeOro inherits Moneda {
 		return "Ahora podre evitar los pozos"}
 		
 	override method powerUp(){
-		caballero.formaDeCaer(powerUpAgujero)
-		powerUpAgujero.moneda(self)
+		const powerUp = new PowerUpAgujero(moneda = self)
+		caballero.formaDeCaer(powerUp)
+
 	}
 	
 	
@@ -46,8 +45,8 @@ class MonedaDePlata inherits Moneda {
 	override method description(){ 
 		return "Ahora podre evitar las trampas"}
 	override method powerUp(){
-		caballero.formaDePincharse(powerUpPinches)
-		powerUpPinches.moneda(self)
+		const powerUp = new PowerUpPinches(moneda = self)
+		caballero.formaDePincharse(powerUp)
 		}	
 
 }
@@ -57,8 +56,8 @@ class MonedaDeBronze inherits Moneda {
 	override method description(){ 
 		return "Ahora podre evitar las babosas"}
 	override method powerUp(){
-		caballero.formaDeRecibirDanio(powerUpDanio)
-		powerUpDanio.moneda(self)
+		const powerUp = new PowerUpDanio(moneda = self)
+		caballero.formaDeRecibirDanio(powerUp)
 	}
 	
 }
