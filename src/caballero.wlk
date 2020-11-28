@@ -149,26 +149,31 @@ object caer {
 	}
 }
 
-object powerUpPinches {
+class PowerUp {
 	var property moneda
 	method sacarVida(personaje){
 		atributos.monedaPerdida(moneda)
+	}
+}
+
+
+class PowerUpPinches inherits PowerUp{
+	override method sacarVida(personaje){
+		super(moneda)
 		personaje.formaDePincharse(perderVida)
 	}
 }
 
-object powerUpDanio {
-	var property moneda
-	method sacarVida(personaje){
-		atributos.monedaPerdida(moneda)
+class PowerUpDanio inherits PowerUp{
+	override method sacarVida(personaje){
+		super(moneda)
 		personaje.formaDeRecibirDanio(perderVida)
 	}
 }
 
-object powerUpAgujero {
-	var property moneda
-	method sacarVida(personaje){
-		atributos.monedaPerdida(moneda)
+class PowerUpAgujero inherits PowerUp{
+	override method sacarVida(personaje){
+		super(moneda)
 		personaje.formaDeCaer(caer)
 	}
 }
