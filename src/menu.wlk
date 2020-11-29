@@ -112,7 +112,7 @@ object on{
 	method action(){
 		sonidos.soundOff(false)
 		game.say(self,"Sonido activado")
-		sonidos.playMusic(game.sound("musicamenu.mp3"))
+		sonidos.playMusic("musicamenu.mp3")
 	}
 }
 object off{
