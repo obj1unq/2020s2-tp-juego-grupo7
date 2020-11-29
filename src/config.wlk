@@ -10,7 +10,7 @@ object config {
 	
 	method configurarAnimaciones(){
 		game.onTick(100, "ANIMACION", { animator.cambiarImagenes()})
-		game.onTick(1000, "RELOJ", {reloj.sumarSegundo()})
+		game.onTick(1000, "RELOJ", {reloj.restarSegundo()})
 	}
 		
 	method configurarTeclas() {

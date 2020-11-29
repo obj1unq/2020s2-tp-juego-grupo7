@@ -92,6 +92,10 @@ object generadorDeTrampas {
 			game.addVisual(caballero)
 		}
 	}
+	
+	method reestablecer(){
+		cantDeTrampas = 0
+	}
 
 }
 

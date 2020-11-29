@@ -160,6 +160,7 @@ object nivel1 {
 		atributos.reestablecer()
 		segundo.reestablecer()
 		minuto.reestablecer()
+		generadorDeTrampas.reestablecer()
 
 	}
 }

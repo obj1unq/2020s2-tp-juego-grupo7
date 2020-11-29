@@ -92,7 +92,7 @@ object atributos{
 object reloj {
 	var property cronometro = 0
 
-	method sumarSegundo(){//cambiar nombre a restar
+	method restarSegundo(){//cambiar nombre a restar
 		cronometro = 0.max(cronometro - 1)
 		segundo.descomponer(cronometro)
 		minuto.descomponer(cronometro)
