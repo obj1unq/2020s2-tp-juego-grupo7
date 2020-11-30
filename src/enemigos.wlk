@@ -26,59 +26,37 @@ class Enemigo{
 
 	
 	method mover(){ 
+		const proxPosicion = direccion.siguientePosicion(position)
+		const objetosAlLado = game.getObjectsIn(proxPosicion)
+	
+		self.esFinalDeRecorrido()
+		self.movimiento(objetosAlLado,proxPosicion)
+	
+	}
+	method esFinalDeRecorrido(){
+		if(movimientosALlegar==movimientosRealizados){
+			direccion=direccion.direccionOpuesta()
+			movimientosRealizados=0
+		}
+	}
+	method movimiento(objetos,posicion){
+		if(self.estoyDentroDelTablero(posicion))
+			if (self.hayCaballero(objetos) or objetos.isEmpty()){
+				position=posicion
+				movimientosRealizados+=1
+			}
+			else direccion=direccion.direccionOpuesta()
 		
-		const objetoAlLado = game.getObjectsIn(direccion.siguientePosicion(position))
-		const imagenesObjetos = objetoAlLado.map{objeto => objeto.image()} 
-		
-		self.encontreObjetos(imagenesObjetos,objetoAlLado)
 	}
-	
-	method encontreObjetos(imagenesObjetos,objetoAlLado){
-		if (self.sonObjetos(imagenesObjetos)){
-			direccion = direccion.direccionOpuesta()
-			movimientosRealizados = 0
-		}else{
-			self.encontreCaballero(objetoAlLado)
-		}
-	}
-	
-	method sonObjetos(imagenesObjetos){
-		return self.sonPinches(imagenesObjetos) or imagenesObjetos.contains("puertaAbierta.png") or imagenesObjetos.contains("muro.png")
-	}
-	
-	method sonPinches(imagenesObjetos){
-		return imagenesObjetos.contains("trampapinche_0.png") or imagenesObjetos.contains("trampapinche_1.png")
-	}
-	
-	method encontreCaballero(objetoAlLado){
-		if (self.esCaballero(objetoAlLado)){
-			position = direccion.siguientePosicion(position)
-			movimientosRealizados +=1
-		}else{
-			self.encontreLimiteOFinalRecorrido(objetoAlLado)
-		}
-	}	
-	method esCaballero(objetoAlLado){
-		return objetoAlLado.contains(caballero)
-	}
-	
-	method encontreLimiteOFinalRecorrido(objetoAlLado){
-		if (self.esFinalDelTableroOFinalRecorrido(objetoAlLado)){
-			direccion = direccion.direccionOpuesta()
-			movimientosRealizados = 0
-		}else{
-			position = direccion.siguientePosicion(position)
-			movimientosRealizados +=1
-		}
-	}
-	
-	method esFinalDelTableroOFinalRecorrido(objetoAlLado){
-		return not self.estoyDentroDelTablero(direccion.siguientePosicion(position)) or self.completeRecorrido()
-	}
-	
+	method hayCaballero(lista)=lista.contains(caballero)
+
+
+
+
 	method estoyDentroDelTablero(posicion){
 		return posicion.x().between(0,game.width()-1) and posicion.y().between(0,game.height()-1)
 	}
+	
 	
 	method completeRecorrido(){
 		return  movimientosRealizados == movimientosALlegar
